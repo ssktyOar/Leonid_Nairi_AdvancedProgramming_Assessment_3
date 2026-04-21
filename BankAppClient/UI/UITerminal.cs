@@ -9,25 +9,24 @@ namespace BankAppClient.UI
 {
     internal static class UITerminal
     {
-        private static readonly DefaultForm[] screens = new DefaultForm[8];
+        private static readonly Dictionary<string,DefaultForm> screens = [];
 
-        internal static void SwitchScreens(ScreenType screenType)
+        internal static void SwitchScreens(string screenName)
         {
-            for (int i = 0; i < screens.Length; i++)
+            foreach(var key in screens.Keys)
             {
-                if (screens[i] == null) { continue; }
-                if(i == (int)screenType)
+                if(key == screenName)
                 {
-                    screens[i].Visible = true;
-                    screens[i].Activated();
+                    screens[key].Visible = true;
+                    screens[key].Activated();
                 }
-                else { screens[i].Visible = false; }
+                else { screens[key].Visible = false; }
             }
         }
 
-        internal static void SetScreen(DefaultForm control, ScreenType screenType)
+        internal static void SetScreen(DefaultForm control)
         {
-            screens[(int)screenType] = control;
+            screens.Add(control.Name, control);
         }
     }
 }

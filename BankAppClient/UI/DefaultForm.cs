@@ -11,6 +11,11 @@ namespace BankAppClient.UI
 {
     internal partial class DefaultForm : Control
     {
+        public override void _Ready()
+        {
+            UITerminal.SetScreen(this);
+            base._Ready();
+        }
         private protected static string cookie = "c";
         // "Field": "data"
         private protected readonly Dictionary<string,LineEdit> fields = [];
@@ -23,11 +28,18 @@ namespace BankAppClient.UI
             return fields.TryAdd(fieldName, field);
         }
 
-        internal virtual void Submit(string requestType)
+        internal virtual void SwitchScreens(string screenName)
         {
-            if(requestType == "BACK"){ UITerminal.SwitchScreens(ScreenType.EditUserAccount); return; }
-            if(requestType == "BANKING"){ UITerminal.SwitchScreens(ScreenType.EditBankAccount); return; }
-            
+            UITerminal.SwitchScreens(screenName);
+        }
+
+        internal virtual void SwitchScreens(Control controlWithScreenName)
+        {
+            UITerminal.SwitchScreens(controlWithScreenName.Name);
+        }
+
+        internal virtual void Submit(string requestType)
+        {            
             data.Clear();
             foreach (var fieldText in fields)
             {

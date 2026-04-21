@@ -36,7 +36,7 @@ namespace BankAppClient.UI.LoadingScreen
                     deltaTime = 0;
                     if (SVTerminal.TestConnection())
                     {
-                        UITerminal.SwitchScreens(ScreenType.EnterUserAccount);
+                        UITerminal.SwitchScreens("LaunchScreen");
                         b = false;
                     }
                 }
