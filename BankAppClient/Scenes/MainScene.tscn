@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://djunigidviptn"]
+[gd_scene load_steps=12 format=3 uid="uid://djunigidviptn"]
 
+[ext_resource type="Texture2D" uid="uid://bjunqqq3ryl5i" path="res://Assets/background.png" id="1_0iob3"]
+[ext_resource type="Texture2D" uid="uid://n0bsrybpivvl" path="res://Assets/backgroundText.png" id="1_4b75m"]
 [ext_resource type="Script" uid="uid://buv627l4bdph1" path="res://UI/LoadingScreen/LoadingScreenLoader.cs" id="1_7rqgy"]
 [ext_resource type="Script" uid="uid://v2wmpbtnwydc" path="res://UI/DefaultButton.cs" id="1_hpc76"]
 [ext_resource type="Script" uid="uid://ck0577q5i2qva" path="res://UI/LoadingScreen/LoadingText.cs" id="1_tr2i4"]
+[ext_resource type="Texture2D" uid="uid://e1myioa0tle8" path="res://Assets/backgroundLogoUpscaled.png" id="3_8ju71"]
 [ext_resource type="Script" uid="uid://csjdctgvadqg3" path="res://UI/LaunchScreen/LaunchScreenLoader.cs" id="3_qxria"]
 [ext_resource type="Script" uid="uid://8271di5krahm" path="res://UI/DefaultField.cs" id="4_y4jh7"]
 [ext_resource type="Script" uid="uid://bm8wx4x333sv4" path="res://UI/AccountScreen/AccountScreenLoader.cs" id="5_qxria"]
@@ -10,6 +13,42 @@
 [ext_resource type="Script" uid="uid://ddbhp7r81snfu" path="res://UI/DefaultOptionButton.cs" id="8_f140w"]
 
 [node name="MainScene" type="Node2D"]
+
+[node name="Background furthest" type="Sprite2D" parent="."]
+scale = Vector2(2.84704, 3.30861)
+texture = ExtResource("1_4b75m")
+
+[node name="Background closest" type="Sprite2D" parent="."]
+scale = Vector2(2.718, 3.126)
+texture = ExtResource("1_0iob3")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-755, -447)
+scale = Vector2(0.355, 0.355)
+texture = ExtResource("3_8ju71")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D3"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -854.0
+offset_top = -350.0
+offset_right = -35.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/default_color = Color(0, 1, 1, 1)
+theme_override_font_sizes/normal_font_size = 150
+text = "SharpBank"
+fit_content = true
+scroll_active = false
+shortcut_keys_enabled = false
+horizontal_alignment = 1
+vertical_alignment = 1
+drag_and_drop_selection_enabled = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -76,6 +115,11 @@ theme_override_font_sizes/font_size = 50
 alignment = 1
 script = ExtResource("4_y4jh7")
 
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/LaunchScreen"]
+position = Vector2(0, -416.5)
+scale = Vector2(0.428571, 0.495549)
+texture = ExtResource("1_4b75m")
+
 [node name="LoginLabel" type="RichTextLabel" parent="Camera2D/LaunchScreen"]
 layout_mode = 1
 anchors_preset = 8
@@ -95,6 +139,11 @@ scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Sprite2D2" type="Sprite2D" parent="Camera2D/LaunchScreen"]
+position = Vector2(0, -49.75)
+scale = Vector2(0.708514, 0.449555)
+texture = ExtResource("1_4b75m")
 
 [node name="PasswordLabel" type="RichTextLabel" parent="Camera2D/LaunchScreen"]
 layout_mode = 1
@@ -130,6 +179,20 @@ text = "Login"
 icon_alignment = 1
 script = ExtResource("1_hpc76")
 
+[node name="register" type="Button" parent="Camera2D/LaunchScreen"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 47.0
+offset_top = 328.0
+offset_right = 299.0
+offset_bottom = 424.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Register"
+icon_alignment = 1
+script = ExtResource("1_hpc76")
+
 [node name="RegisterButton" type="Button" parent="Camera2D/LaunchScreen"]
 visible = false
 layout_mode = 1
@@ -147,10 +210,10 @@ script = ExtResource("1_hpc76")
 
 [node name="result" type="LineEdit" parent="Camera2D/LaunchScreen"]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 330.0
-offset_right = 495.0
-offset_bottom = 427.0
+offset_left = 479.0
+offset_top = 416.0
+offset_right = 926.0
+offset_bottom = 513.0
 theme_override_colors/clear_button_color_pressed = Color(0, 0, 0, 0)
 theme_override_colors/clear_button_color = Color(0, 0, 0, 0)
 theme_override_colors/selection_color = Color(0, 0, 0, 0)
