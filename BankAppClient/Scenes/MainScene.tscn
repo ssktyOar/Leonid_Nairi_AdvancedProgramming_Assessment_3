@@ -53,6 +53,7 @@ drag_and_drop_selection_enabled = false
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="LoadingScreen" type="Control" parent="Camera2D"]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -230,8 +231,7 @@ selecting_enabled = false
 drag_and_drop_selection_enabled = false
 script = ExtResource("4_y4jh7")
 
-[node name="AccountScreen" type="Control" parent="Camera2D"]
-visible = false
+[node name="MainPage" type="Control" parent="Camera2D"]
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -242,93 +242,49 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("5_qxria")
 
-[node name="editContactData" type="Button" parent="Camera2D/AccountScreen"]
+[node name="logout" type="Button" parent="Camera2D/MainPage"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = -922.0
-offset_top = 146.0
-offset_right = -478.0
-offset_bottom = 242.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Edit contact data"
-icon_alignment = 1
-script = ExtResource("1_hpc76")
-
-[node name="logout" type="Button" parent="Camera2D/AccountScreen"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 458.0
-offset_top = -487.0
-offset_right = 904.0
-offset_bottom = -391.0
+offset_left = 462.0
+offset_top = -506.0
+offset_right = 908.0
+offset_bottom = -410.0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "Logout"
 icon_alignment = 1
 script = ExtResource("1_hpc76")
 
-[node name="changePassword" type="Button" parent="Camera2D/AccountScreen"]
+[node name="BANKING" type="Button" parent="Camera2D/MainPage"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 276.0
-offset_top = 4.0
-offset_right = 720.0
-offset_bottom = 100.0
+offset_left = -348.0
+offset_top = -111.0
+offset_right = 352.0
+offset_bottom = 89.0
 grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Change password"
+theme_override_font_sizes/font_size = 100
+text = "Banking"
 icon_alignment = 1
 script = ExtResource("1_hpc76")
 
-[node name="BANKING" type="Button" parent="Camera2D/AccountScreen"]
+[node name="EDITACCOUNT" type="Button" parent="Camera2D/MainPage"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 280.0
-offset_top = 296.0
-offset_right = 724.0
-offset_bottom = 392.0
+offset_left = -348.0
+offset_top = -340.0
+offset_right = 352.0
+offset_bottom = -140.0
 grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "BANKING"
+theme_override_font_sizes/font_size = 100
+text = "Edit account"
 icon_alignment = 1
 script = ExtResource("1_hpc76")
 
-[node name="login" type="LineEdit" parent="Camera2D/AccountScreen"]
-layout_mode = 0
-offset_left = -479.0
-offset_top = -401.0
-offset_right = -32.0
-offset_bottom = -304.0
-theme_override_font_sizes/font_size = 50
-alignment = 1
-script = ExtResource("4_y4jh7")
-
-[node name="password" type="LineEdit" parent="Camera2D/AccountScreen"]
-layout_mode = 0
-offset_left = 473.0
-offset_top = -255.0
-offset_right = 920.0
-offset_bottom = -158.0
-theme_override_font_sizes/font_size = 50
-alignment = 1
-script = ExtResource("4_y4jh7")
-
-[node name="newPassword" type="LineEdit" parent="Camera2D/AccountScreen"]
-layout_mode = 0
-offset_left = 480.0
-offset_top = -124.0
-offset_right = 927.0
-offset_bottom = -27.0
-theme_override_font_sizes/font_size = 50
-alignment = 1
-script = ExtResource("4_y4jh7")
-
-[node name="result" type="LineEdit" parent="Camera2D/AccountScreen"]
+[node name="result" type="LineEdit" parent="Camera2D/MainPage"]
 layout_mode = 0
 offset_left = -217.0
 offset_top = 294.0
@@ -350,7 +306,127 @@ selecting_enabled = false
 drag_and_drop_selection_enabled = false
 script = ExtResource("4_y4jh7")
 
-[node name="name" type="LineEdit" parent="Camera2D/AccountScreen"]
+[node name="AccountScreenOld" type="Control" parent="Camera2D"]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_qxria")
+
+[node name="editContactData" type="Button" parent="Camera2D/AccountScreenOld"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -922.0
+offset_top = 146.0
+offset_right = -478.0
+offset_bottom = 242.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Edit contact data"
+icon_alignment = 1
+script = ExtResource("1_hpc76")
+
+[node name="logout" type="Button" parent="Camera2D/AccountScreenOld"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 458.0
+offset_top = -487.0
+offset_right = 904.0
+offset_bottom = -391.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Logout"
+icon_alignment = 1
+script = ExtResource("1_hpc76")
+
+[node name="changePassword" type="Button" parent="Camera2D/AccountScreenOld"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 276.0
+offset_top = 4.0
+offset_right = 720.0
+offset_bottom = 100.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Change password"
+icon_alignment = 1
+script = ExtResource("1_hpc76")
+
+[node name="BANKING" type="Button" parent="Camera2D/AccountScreenOld"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 280.0
+offset_top = 296.0
+offset_right = 724.0
+offset_bottom = 392.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "BANKING"
+icon_alignment = 1
+script = ExtResource("1_hpc76")
+
+[node name="login" type="LineEdit" parent="Camera2D/AccountScreenOld"]
+layout_mode = 0
+offset_left = -479.0
+offset_top = -401.0
+offset_right = -32.0
+offset_bottom = -304.0
+theme_override_font_sizes/font_size = 50
+alignment = 1
+script = ExtResource("4_y4jh7")
+
+[node name="password" type="LineEdit" parent="Camera2D/AccountScreenOld"]
+layout_mode = 0
+offset_left = 473.0
+offset_top = -255.0
+offset_right = 920.0
+offset_bottom = -158.0
+theme_override_font_sizes/font_size = 50
+alignment = 1
+script = ExtResource("4_y4jh7")
+
+[node name="newPassword" type="LineEdit" parent="Camera2D/AccountScreenOld"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = -124.0
+offset_right = 927.0
+offset_bottom = -27.0
+theme_override_font_sizes/font_size = 50
+alignment = 1
+script = ExtResource("4_y4jh7")
+
+[node name="result" type="LineEdit" parent="Camera2D/AccountScreenOld"]
+layout_mode = 0
+offset_left = -217.0
+offset_top = 294.0
+offset_right = 230.0
+offset_bottom = 391.0
+theme_override_colors/clear_button_color_pressed = Color(0, 0, 0, 0)
+theme_override_colors/clear_button_color = Color(0, 0, 0, 0)
+theme_override_colors/selection_color = Color(0, 0, 0, 0)
+theme_override_colors/caret_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 50
+alignment = 1
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+script = ExtResource("4_y4jh7")
+
+[node name="name" type="LineEdit" parent="Camera2D/AccountScreenOld"]
 layout_mode = 0
 offset_left = -479.0
 offset_top = -256.0
@@ -360,7 +436,7 @@ theme_override_font_sizes/font_size = 50
 alignment = 1
 script = ExtResource("4_y4jh7")
 
-[node name="phone" type="LineEdit" parent="Camera2D/AccountScreen"]
+[node name="phone" type="LineEdit" parent="Camera2D/AccountScreenOld"]
 layout_mode = 0
 offset_left = -479.0
 offset_top = -123.0
@@ -370,7 +446,7 @@ theme_override_font_sizes/font_size = 50
 alignment = 1
 script = ExtResource("4_y4jh7")
 
-[node name="email" type="LineEdit" parent="Camera2D/AccountScreen"]
+[node name="email" type="LineEdit" parent="Camera2D/AccountScreenOld"]
 layout_mode = 0
 offset_left = -479.0
 offset_top = 8.0
@@ -380,7 +456,7 @@ theme_override_font_sizes/font_size = 50
 alignment = 1
 script = ExtResource("4_y4jh7")
 
-[node name="LoginLabel" type="RichTextLabel" parent="Camera2D/AccountScreen"]
+[node name="LoginLabel" type="RichTextLabel" parent="Camera2D/AccountScreenOld"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -400,7 +476,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PasswordLabel" type="RichTextLabel" parent="Camera2D/AccountScreen"]
+[node name="PasswordLabel" type="RichTextLabel" parent="Camera2D/AccountScreenOld"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -420,7 +496,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PasswordLabel2" type="RichTextLabel" parent="Camera2D/AccountScreen"]
+[node name="PasswordLabel2" type="RichTextLabel" parent="Camera2D/AccountScreenOld"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -440,7 +516,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NameLabel" type="RichTextLabel" parent="Camera2D/AccountScreen"]
+[node name="NameLabel" type="RichTextLabel" parent="Camera2D/AccountScreenOld"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -460,7 +536,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PhoneLabel" type="RichTextLabel" parent="Camera2D/AccountScreen"]
+[node name="PhoneLabel" type="RichTextLabel" parent="Camera2D/AccountScreenOld"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -480,7 +556,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EmailLabel" type="RichTextLabel" parent="Camera2D/AccountScreen"]
+[node name="EmailLabel" type="RichTextLabel" parent="Camera2D/AccountScreenOld"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
