@@ -1,0 +1,2 @@
+﻿AllowedPrefixes=http://localhost:8001/
+DebugInfo=true
