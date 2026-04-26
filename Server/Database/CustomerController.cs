@@ -20,10 +20,12 @@ namespace Server.Database
         private readonly Dictionary<string, string> cookies = []; // key - cookie, data - login
         private readonly Dictionary<string, Customer> cookiesByUsers = []; // key - login, data - cookie
         private readonly Dictionary<string, Customer> customers = []; // key - login, data - customer
+
+        private readonly Dictionary<long, EverydayBalance> bankAccounts = []; // key - bankID, data - bank balance
         private readonly string jsonResponseSuccess;
         private readonly string jsonResponseFailure;
-        //
-
+        
+        // 5% investment rate, $5 transaction fee, $1000 overdraft limit
         private readonly decimal newInvestmentRate = 0.05m;
         private readonly decimal newFailedTransactionFee = 5m;
         private readonly decimal newOverdraftLimit = 1000m;
@@ -33,17 +35,17 @@ namespace Server.Database
             jsonResponseSuccess = JsonString("result", "success");
             jsonResponseFailure = JsonString("result", "failure");
 
-            List<EverydayAccount> l1 = [];
-            l1.Add(new EverydayAccount(true, 5497631m, "TestBankAccount", 1111));
-            l1.Add(new InvestmentAccount(true, 5631m, "TestBankAccount", 2222, newInvestmentRate, newFailedTransactionFee));
-            l1.Add(new OmniAccount(true, 15631m, "TestBankAccount", 3333, newInvestmentRate, newFailedTransactionFee, newOverdraftLimit));
-            Customer c1 = new("1", "1", "TestEmployee", "1", "1@1.com", l1);
-            customers.Add(c1.customerID, c1);
-            List<EverydayAccount> l2 = [];
-            l2.Add(new OmniAccount(false, 631m, "TestBankAccount", 4444, newInvestmentRate, newFailedTransactionFee, newOverdraftLimit));
-            l2.Add(new InvestmentAccount(false, 0m, "TestBankAccount", 5555, newInvestmentRate, newFailedTransactionFee));
-            Customer c2 = new("2", "1111", "Test", "2", "2@1.com", l2);
-            customers.Add(c2.customerID, c2);
+            //List<EverydayBalance> l1 = [];
+            //l1.Add();
+            //l1.Add(new InvestmentBalance(true, 5631m, "TestBankAccount", 2222, newInvestmentRate, newFailedTransactionFee));
+            //l1.Add(new OmniBalance(true, 15631m, "TestBankAccount", 3333, newInvestmentRate, newFailedTransactionFee, newOverdraftLimit));
+            //Customer c1 = new("1", "1", "TestEmployee", "1", "1@1.com", new EverydayBalance(true, 5497631m, "TestBankAccount", 1111));
+            //customers.Add(c1.customerID, c1);
+            //List<EverydayBalance> l2 = [];
+            //l2.Add(new OmniBalance(false, 631m, "TestBankAccount", 4444, newInvestmentRate, newFailedTransactionFee, newOverdraftLimit));
+            //l2.Add(new InvestmentBalance(false, 0m, "TestBankAccount", 5555, newInvestmentRate, newFailedTransactionFee));
+            //Customer c2 = new("2", "1111", "Test", "2", "2@1.com", l2);
+            //customers.Add(c2.customerID, c2);
         }
 
         private static bool ValidateSession(string cookie, Customer customer)
@@ -246,23 +248,26 @@ namespace Server.Database
             return jsonResponseFailure;
         }
 
-        private string CreateBankAccount(Dictionary<string, string> parsedData)
+private string CreateBankAccount(Dictionary<string, string> parsedData)
         {
-            if (CookieTest(parsedData) && 
-            parsedData.TryGetValue("cookie", out string? cookie) && 
-            parsedData.TryGetValue("accountType", out string? accountType) &&
-            parsedData.TryGetValue("isBankStaff", out string? isBankStaff) &&
-            parsedData.TryGetValue("accountName", out string? accountName) &&
-            parsedData.TryGetValue("pin", out string? pinString))
+            return LoadBankAccount(false, parsedData);
+        }
+
+        private string LoadBankAccount(bool fromDatabase, Dictionary<string, string> parsedData)
+        {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
+            if (CookieTest(parsedData) &&
+            parsedData.TryGetValue("login", out string login) &&
+            parsedData.TryGetValue("login", out string password) &&
+            parsedData.TryGetValue("login", out string accountName) &&
+            parsedData.TryGetValue("login", out string phone) &&
+            parsedData.TryGetValue("login", out string email) &&
+            parsedData.TryGetValue("bankAccount", out string bankAccount))
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
             {
                 try
                 {
-                    if (customers[cookies[cookie]].CreateBankAccount(cookie, 
-                    accountType, bool.Parse(isBankStaff), 0m, accountName, short.Parse(pinString),
-                    newInvestmentRate, newFailedTransactionFee, newOverdraftLimit)) // 5% investment rate, $5 transaction fee, $1000 overdraft limit
-                    {
-                        return jsonResponseSuccess;
-                    }
+                    
                 }
                 catch (Exception e) { Terminal.PrintException(e); }
 

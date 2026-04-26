@@ -270,20 +270,6 @@ text = "Logout"
 icon_alignment = 1
 script = ExtResource("1_hpc76")
 
-[node name="BankAccountScreen" type="Button" parent="Camera2D/MainPage"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = -348.0
-offset_top = -111.0
-offset_right = 352.0
-offset_bottom = 89.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 100
-text = "Banking"
-icon_alignment = 1
-script = ExtResource("10_xb4mg")
-
 [node name="AccountScreen" type="Button" parent="Camera2D/MainPage"]
 layout_mode = 1
 anchors_preset = 9
@@ -295,6 +281,34 @@ offset_bottom = -140.0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 100
 text = "Edit account"
+icon_alignment = 1
+script = ExtResource("10_xb4mg")
+
+[node name="BankAccountScreen2" type="Button" parent="Camera2D/MainPage"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -348.0
+offset_top = -111.0
+offset_right = 352.0
+offset_bottom = 89.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 90
+text = "Edit credentials"
+icon_alignment = 1
+script = ExtResource("10_xb4mg")
+
+[node name="TransactionsScreen" type="Button" parent="Camera2D/MainPage"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -348.0
+offset_top = 118.0
+offset_right = 352.0
+offset_bottom = 318.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 100
+text = "Banking"
 icon_alignment = 1
 script = ExtResource("10_xb4mg")
 
@@ -592,6 +606,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="AccountScreen" type="Control" parent="Camera2D"]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -818,7 +833,6 @@ autowrap_mode = 0
 vertical_alignment = 1
 
 [node name="BankAccountScreen" type="Control" parent="Camera2D"]
-visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -830,6 +844,7 @@ grow_vertical = 2
 script = ExtResource("7_q68mp")
 
 [node name="editBankAccount" type="Button" parent="Camera2D/BankAccountScreen"]
+visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -840,20 +855,6 @@ offset_bottom = 143.0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "Edit bank account"
-icon_alignment = 1
-script = ExtResource("1_hpc76")
-
-[node name="deleteBankAccount" type="Button" parent="Camera2D/BankAccountScreen"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 443.0
-offset_top = -535.0
-offset_right = 960.0
-offset_bottom = -439.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Delete bank account"
 icon_alignment = 1
 script = ExtResource("1_hpc76")
 
@@ -873,10 +874,9 @@ script = ExtResource("1_hpc76")
 
 [node name="bankAccountID" type="LineEdit" parent="Camera2D/BankAccountScreen"]
 layout_mode = 0
-offset_left = -455.0
-offset_top = -511.0
-offset_right = -8.0
-offset_bottom = -414.0
+offset_left = -450.0
+offset_top = -350.0
+offset_bottom = -250.0
 theme_override_font_sizes/font_size = 50
 alignment = 1
 editable = false
@@ -890,10 +890,9 @@ script = ExtResource("4_y4jh7")
 
 [node name="accountType" type="LineEdit" parent="Camera2D/BankAccountScreen"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = -397.0
-offset_right = 471.0
-offset_bottom = -300.0
+offset_left = -450.0
+offset_top = 310.0
+offset_bottom = 410.0
 theme_override_font_sizes/font_size = 50
 alignment = 1
 editable = false
@@ -905,17 +904,6 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 script = ExtResource("4_y4jh7")
 
-[node name="pin" type="LineEdit" parent="Camera2D/BankAccountScreen"]
-layout_mode = 0
-offset_left = 475.0
-offset_top = -290.0
-offset_right = 922.0
-offset_bottom = -193.0
-theme_override_font_sizes/font_size = 50
-placeholder_text = "Required"
-alignment = 1
-script = ExtResource("4_y4jh7")
-
 [node name="newPin" type="LineEdit" parent="Camera2D/BankAccountScreen"]
 layout_mode = 0
 offset_left = 477.0
@@ -924,16 +912,6 @@ offset_right = 924.0
 offset_bottom = -82.0
 theme_override_font_sizes/font_size = 50
 placeholder_text = "Enter 4 digits"
-alignment = 1
-script = ExtResource("4_y4jh7")
-
-[node name="sum" type="LineEdit" parent="Camera2D/BankAccountScreen"]
-layout_mode = 0
-offset_left = -463.0
-offset_top = 207.0
-offset_right = -16.0
-offset_bottom = 304.0
-theme_override_font_sizes/font_size = 50
 alignment = 1
 script = ExtResource("4_y4jh7")
 
@@ -959,22 +937,11 @@ selecting_enabled = false
 drag_and_drop_selection_enabled = false
 script = ExtResource("4_y4jh7")
 
-[node name="accountName" type="LineEdit" parent="Camera2D/BankAccountScreen"]
-layout_mode = 0
-offset_left = -453.0
-offset_top = -398.0
-offset_right = -6.0
-offset_bottom = -301.0
-theme_override_font_sizes/font_size = 50
-alignment = 1
-script = ExtResource("4_y4jh7")
-
 [node name="isBankStaff" type="LineEdit" parent="Camera2D/BankAccountScreen"]
 layout_mode = 0
-offset_left = -451.0
-offset_top = -285.0
-offset_right = -4.0
-offset_bottom = -188.0
+offset_left = -450.0
+offset_top = -240.0
+offset_bottom = -140.0
 theme_override_font_sizes/font_size = 50
 alignment = 1
 editable = false
@@ -988,10 +955,9 @@ script = ExtResource("4_y4jh7")
 
 [node name="balance" type="LineEdit" parent="Camera2D/BankAccountScreen"]
 layout_mode = 0
-offset_left = -456.0
-offset_top = -179.0
-offset_right = -9.0
-offset_bottom = -82.0
+offset_left = -450.0
+offset_top = -130.0
+offset_bottom = -30.0
 theme_override_font_sizes/font_size = 50
 alignment = 1
 editable = false
@@ -1005,10 +971,9 @@ script = ExtResource("4_y4jh7")
 
 [node name="investmentRate" type="LineEdit" parent="Camera2D/BankAccountScreen"]
 layout_mode = 0
-offset_left = -454.0
-offset_top = -70.0
-offset_right = -7.0
-offset_bottom = 27.0
+offset_left = -450.0
+offset_top = -20.0
+offset_bottom = 80.0
 theme_override_font_sizes/font_size = 50
 alignment = 1
 editable = false
@@ -1022,10 +987,9 @@ script = ExtResource("4_y4jh7")
 
 [node name="interest" type="LineEdit" parent="Camera2D/BankAccountScreen"]
 layout_mode = 0
-offset_left = 15.0
-offset_top = 44.0
-offset_right = 462.0
-offset_bottom = 141.0
+offset_left = -450.0
+offset_top = 200.0
+offset_bottom = 300.0
 theme_override_font_sizes/font_size = 50
 alignment = 1
 editable = false
@@ -1039,10 +1003,9 @@ script = ExtResource("4_y4jh7")
 
 [node name="overdraftLimit" type="LineEdit" parent="Camera2D/BankAccountScreen"]
 layout_mode = 0
-offset_left = -457.0
-offset_top = 42.0
-offset_right = -10.0
-offset_bottom = 139.0
+offset_left = -450.0
+offset_top = 90.0
+offset_bottom = 190.0
 theme_override_font_sizes/font_size = 50
 alignment = 1
 editable = false
@@ -1056,63 +1019,14 @@ script = ExtResource("4_y4jh7")
 
 [node name="LoginLabel" type="RichTextLabel" parent="Camera2D/BankAccountScreen"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -972.0
-offset_top = -574.0
-offset_right = -452.0
-offset_bottom = -347.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -930.0
+offset_top = -350.0
+offset_right = -430.0
+offset_bottom = -250.0
 theme_override_font_sizes/normal_font_size = 60
 text = "Bank account ID"
 scroll_active = false
 autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PasswordLabel" type="RichTextLabel" parent="Camera2D/BankAccountScreen"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 26.0
-offset_top = -299.0
-offset_right = 518.0
-offset_bottom = -181.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 50
-text = "Current pin"
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PasswordLabel3" type="RichTextLabel" parent="Camera2D/BankAccountScreen"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 456.0
-offset_top = -381.0
-offset_right = 948.0
-offset_bottom = -263.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/default_color = Color(1, 0, 0, 0.741176)
-theme_override_font_sizes/normal_font_size = 40
-text = "Current pin is required"
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="PasswordLabel2" type="RichTextLabel" parent="Camera2D/BankAccountScreen"]
@@ -1129,27 +1043,7 @@ offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 50
-text = "New pin"
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="NameLabel" type="RichTextLabel" parent="Camera2D/BankAccountScreen"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -938.0
-offset_top = -413.0
-offset_right = -446.0
-offset_bottom = -295.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 60
-text = "Account name"
+text = "Pin"
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
@@ -1162,17 +1056,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -21.0
-offset_top = -522.0
-offset_right = 471.0
-offset_bottom = -404.0
+offset_left = -930.0
+offset_top = 310.0
+offset_right = -430.0
+offset_bottom = 410.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 60
 text = "Account type"
 scroll_active = false
 autowrap_mode = 0
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="IsBankStaffLabel" type="RichTextLabel" parent="Camera2D/BankAccountScreen"]
@@ -1182,17 +1075,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -919.0
-offset_top = -299.0
-offset_right = -427.0
-offset_bottom = -181.0
+offset_left = -930.0
+offset_top = -240.0
+offset_right = -430.0
+offset_bottom = -140.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 60
 text = "Staff account"
 scroll_active = false
 autowrap_mode = 0
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EmailLabel" type="RichTextLabel" parent="Camera2D/BankAccountScreen"]
@@ -1202,17 +1094,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -850.0
-offset_top = -206.0
-offset_right = -358.0
-offset_bottom = -88.0
+offset_left = -930.0
+offset_top = -130.0
+offset_right = -430.0
+offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 60
 text = "Balance"
 scroll_active = false
 autowrap_mode = 0
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EmailLabel5" type="RichTextLabel" parent="Camera2D/BankAccountScreen"]
@@ -1222,17 +1113,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -25.0
-offset_top = -83.0
-offset_right = 467.0
-offset_bottom = 35.0
+offset_left = -930.0
+offset_top = 200.0
+offset_right = -430.0
+offset_bottom = 300.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 60
 text = "Interest"
 scroll_active = false
 autowrap_mode = 0
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EmailLabel3" type="RichTextLabel" parent="Camera2D/BankAccountScreen"]
@@ -1242,17 +1132,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -967.0
-offset_top = -82.0
-offset_right = -475.0
-offset_bottom = 36.0
+offset_left = -930.0
+offset_top = -20.0
+offset_right = -430.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 60
 text = "Investment rate"
 scroll_active = false
 autowrap_mode = 0
-horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="EmailLabel4" type="RichTextLabel" parent="Camera2D/BankAccountScreen"]
@@ -1262,38 +1151,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -945.0
-offset_top = 33.0
-offset_right = -453.0
-offset_bottom = 151.0
+offset_left = -930.0
+offset_top = 90.0
+offset_right = -430.0
+offset_bottom = 190.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 60
 text = "Overdraft limit"
 scroll_active = false
 autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="EmailLabel2" type="RichTextLabel" parent="Camera2D/BankAccountScreen"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -1115.0
-offset_top = 186.0
-offset_right = -511.0
-offset_bottom = 354.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 60
-text = "Transaction 
-amount"
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="MainPage" type="Button" parent="Camera2D/BankAccountScreen"]
@@ -1310,168 +1177,7 @@ text = "GO BACK"
 icon_alignment = 1
 script = ExtResource("10_xb4mg")
 
-[node name="login" type="LineEdit" parent="Camera2D/BankAccountScreen"]
-visible = false
-layout_mode = 0
-offset_left = -479.0
-offset_top = -401.0
-offset_right = -32.0
-offset_bottom = -304.0
-theme_override_font_sizes/font_size = 50
-alignment = 1
-script = ExtResource("4_y4jh7")
-
-[node name="password" type="LineEdit" parent="Camera2D/BankAccountScreen"]
-visible = false
-layout_mode = 0
-offset_left = 473.0
-offset_top = -255.0
-offset_right = 920.0
-offset_bottom = -158.0
-theme_override_font_sizes/font_size = 50
-alignment = 1
-script = ExtResource("4_y4jh7")
-
-[node name="newPassword" type="LineEdit" parent="Camera2D/BankAccountScreen"]
-visible = false
-layout_mode = 0
-offset_left = 480.0
-offset_top = -124.0
-offset_right = 927.0
-offset_bottom = -27.0
-theme_override_font_sizes/font_size = 50
-alignment = 1
-script = ExtResource("4_y4jh7")
-
-[node name="result2" type="LineEdit" parent="Camera2D/BankAccountScreen"]
-visible = false
-layout_mode = 0
-offset_left = -217.0
-offset_top = 294.0
-offset_right = 230.0
-offset_bottom = 391.0
-theme_override_colors/clear_button_color_pressed = Color(0, 0, 0, 0)
-theme_override_colors/clear_button_color = Color(0, 0, 0, 0)
-theme_override_colors/selection_color = Color(0, 0, 0, 0)
-theme_override_colors/caret_color = Color(0, 0, 0, 0)
-theme_override_font_sizes/font_size = 50
-alignment = 1
-editable = false
-context_menu_enabled = false
-emoji_menu_enabled = false
-virtual_keyboard_enabled = false
-shortcut_keys_enabled = false
-middle_mouse_paste_enabled = false
-selecting_enabled = false
-drag_and_drop_selection_enabled = false
-script = ExtResource("4_y4jh7")
-
-[node name="name" type="LineEdit" parent="Camera2D/BankAccountScreen"]
-visible = false
-layout_mode = 0
-offset_left = -479.0
-offset_top = -256.0
-offset_right = -32.0
-offset_bottom = -159.0
-theme_override_font_sizes/font_size = 50
-alignment = 1
-script = ExtResource("4_y4jh7")
-
-[node name="phone" type="LineEdit" parent="Camera2D/BankAccountScreen"]
-visible = false
-layout_mode = 0
-offset_left = -479.0
-offset_top = -123.0
-offset_right = -32.0
-offset_bottom = -26.0
-theme_override_font_sizes/font_size = 50
-alignment = 1
-script = ExtResource("4_y4jh7")
-
-[node name="email" type="LineEdit" parent="Camera2D/BankAccountScreen"]
-visible = false
-layout_mode = 0
-offset_left = -479.0
-offset_top = 8.0
-offset_right = -32.0
-offset_bottom = 105.0
-theme_override_font_sizes/font_size = 50
-alignment = 1
-script = ExtResource("4_y4jh7")
-
-[node name="OptionButton" type="OptionButton" parent="Camera2D/BankAccountScreen"]
-layout_mode = 0
-offset_left = 336.0
-offset_top = 180.0
-offset_right = 932.0
-offset_bottom = 281.0
-theme_override_font_sizes/font_size = 50
-script = ExtResource("8_f140w")
-
-[node name="IsBankStaffLabel2" type="RichTextLabel" parent="Camera2D/BankAccountScreen"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 456.0
-offset_top = -474.0
-offset_right = 948.0
-offset_bottom = -356.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/default_color = Color(1, 0, 0, 1)
-theme_override_font_sizes/normal_font_size = 30
-text = "Can't delete if balance is not 0!"
-scroll_active = false
-autowrap_mode = 0
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="deposit" type="Button" parent="Camera2D/BankAccountScreen"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = -942.0
-offset_top = 420.0
-offset_right = -498.0
-offset_bottom = 516.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Deposit"
-icon_alignment = 1
-script = ExtResource("1_hpc76")
-
-[node name="withdraw" type="Button" parent="Camera2D/BankAccountScreen"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = -459.0
-offset_top = 423.0
-offset_right = -15.0
-offset_bottom = 519.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Withdraw"
-icon_alignment = 1
-script = ExtResource("1_hpc76")
-
-[node name="addInterest" type="Button" parent="Camera2D/BankAccountScreen"]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 13.0
-offset_top = 423.0
-offset_right = 457.0
-offset_bottom = 519.0
-grow_vertical = 2
-theme_override_font_sizes/font_size = 50
-text = "Add interest"
-icon_alignment = 1
-script = ExtResource("1_hpc76")
-
-[node name="BankAccountScreen2" type="Control" parent="Camera2D"]
+[node name="OLD BankAccountScreen" type="Control" parent="Camera2D"]
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -1483,7 +1189,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_q68mp")
 
-[node name="editBankAccount" type="Button" parent="Camera2D/BankAccountScreen2"]
+[node name="editBankAccount" type="Button" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -1497,7 +1203,7 @@ text = "Edit bank account"
 icon_alignment = 1
 script = ExtResource("1_hpc76")
 
-[node name="deleteBankAccount" type="Button" parent="Camera2D/BankAccountScreen2"]
+[node name="deleteBankAccount" type="Button" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -1511,7 +1217,7 @@ text = "Delete bank account"
 icon_alignment = 1
 script = ExtResource("1_hpc76")
 
-[node name="changeAccountPin" type="Button" parent="Camera2D/BankAccountScreen2"]
+[node name="changeAccountPin" type="Button" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -1525,7 +1231,7 @@ text = "Change pin"
 icon_alignment = 1
 script = ExtResource("1_hpc76")
 
-[node name="bankAccountID" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="bankAccountID" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 0
 offset_left = -455.0
 offset_top = -511.0
@@ -1542,7 +1248,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 script = ExtResource("4_y4jh7")
 
-[node name="accountType" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="accountType" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 0
 offset_left = 24.0
 offset_top = -397.0
@@ -1559,7 +1265,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 script = ExtResource("4_y4jh7")
 
-[node name="pin" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="pin" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 0
 offset_left = 475.0
 offset_top = -290.0
@@ -1570,7 +1276,7 @@ placeholder_text = "Required"
 alignment = 1
 script = ExtResource("4_y4jh7")
 
-[node name="newPin" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="newPin" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 0
 offset_left = 477.0
 offset_top = -179.0
@@ -1581,7 +1287,7 @@ placeholder_text = "Enter 4 digits"
 alignment = 1
 script = ExtResource("4_y4jh7")
 
-[node name="sum" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="sum" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 0
 offset_left = -463.0
 offset_top = 207.0
@@ -1591,7 +1297,7 @@ theme_override_font_sizes/font_size = 50
 alignment = 1
 script = ExtResource("4_y4jh7")
 
-[node name="result" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="result" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 0
 offset_left = 477.0
 offset_top = 306.0
@@ -1613,7 +1319,7 @@ selecting_enabled = false
 drag_and_drop_selection_enabled = false
 script = ExtResource("4_y4jh7")
 
-[node name="accountName" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="accountName" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 0
 offset_left = -453.0
 offset_top = -398.0
@@ -1623,7 +1329,7 @@ theme_override_font_sizes/font_size = 50
 alignment = 1
 script = ExtResource("4_y4jh7")
 
-[node name="isBankStaff" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="isBankStaff" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 0
 offset_left = -451.0
 offset_top = -285.0
@@ -1640,7 +1346,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 script = ExtResource("4_y4jh7")
 
-[node name="balance" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="balance" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 0
 offset_left = -456.0
 offset_top = -179.0
@@ -1657,7 +1363,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 script = ExtResource("4_y4jh7")
 
-[node name="investmentRate" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="investmentRate" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 0
 offset_left = -454.0
 offset_top = -70.0
@@ -1674,7 +1380,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 script = ExtResource("4_y4jh7")
 
-[node name="interest" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="interest" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 44.0
@@ -1691,7 +1397,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 script = ExtResource("4_y4jh7")
 
-[node name="overdraftLimit" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="overdraftLimit" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 0
 offset_left = -457.0
 offset_top = 42.0
@@ -1708,7 +1414,7 @@ middle_mouse_paste_enabled = false
 selecting_enabled = false
 script = ExtResource("4_y4jh7")
 
-[node name="LoginLabel" type="RichTextLabel" parent="Camera2D/BankAccountScreen2"]
+[node name="LoginLabel" type="RichTextLabel" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1728,7 +1434,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PasswordLabel" type="RichTextLabel" parent="Camera2D/BankAccountScreen2"]
+[node name="PasswordLabel" type="RichTextLabel" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1748,7 +1454,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PasswordLabel3" type="RichTextLabel" parent="Camera2D/BankAccountScreen2"]
+[node name="PasswordLabel3" type="RichTextLabel" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1769,7 +1475,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PasswordLabel2" type="RichTextLabel" parent="Camera2D/BankAccountScreen2"]
+[node name="PasswordLabel2" type="RichTextLabel" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1789,7 +1495,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NameLabel" type="RichTextLabel" parent="Camera2D/BankAccountScreen2"]
+[node name="NameLabel" type="RichTextLabel" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1809,7 +1515,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TypeLabel" type="RichTextLabel" parent="Camera2D/BankAccountScreen2"]
+[node name="TypeLabel" type="RichTextLabel" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1829,7 +1535,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="IsBankStaffLabel" type="RichTextLabel" parent="Camera2D/BankAccountScreen2"]
+[node name="IsBankStaffLabel" type="RichTextLabel" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1849,7 +1555,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EmailLabel" type="RichTextLabel" parent="Camera2D/BankAccountScreen2"]
+[node name="EmailLabel" type="RichTextLabel" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1869,7 +1575,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EmailLabel5" type="RichTextLabel" parent="Camera2D/BankAccountScreen2"]
+[node name="EmailLabel5" type="RichTextLabel" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1889,7 +1595,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EmailLabel3" type="RichTextLabel" parent="Camera2D/BankAccountScreen2"]
+[node name="EmailLabel3" type="RichTextLabel" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1909,7 +1615,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EmailLabel4" type="RichTextLabel" parent="Camera2D/BankAccountScreen2"]
+[node name="EmailLabel4" type="RichTextLabel" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1929,7 +1635,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="EmailLabel2" type="RichTextLabel" parent="Camera2D/BankAccountScreen2"]
+[node name="EmailLabel2" type="RichTextLabel" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -1950,7 +1656,7 @@ autowrap_mode = 0
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BACK" type="Button" parent="Camera2D/BankAccountScreen2"]
+[node name="BACK" type="Button" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -1964,7 +1670,7 @@ text = "GO BACK"
 icon_alignment = 1
 script = ExtResource("1_hpc76")
 
-[node name="login" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="login" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 visible = false
 layout_mode = 0
 offset_left = -479.0
@@ -1975,7 +1681,7 @@ theme_override_font_sizes/font_size = 50
 alignment = 1
 script = ExtResource("4_y4jh7")
 
-[node name="password" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="password" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 visible = false
 layout_mode = 0
 offset_left = 473.0
@@ -1986,7 +1692,7 @@ theme_override_font_sizes/font_size = 50
 alignment = 1
 script = ExtResource("4_y4jh7")
 
-[node name="newPassword" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="newPassword" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 visible = false
 layout_mode = 0
 offset_left = 480.0
@@ -1997,7 +1703,7 @@ theme_override_font_sizes/font_size = 50
 alignment = 1
 script = ExtResource("4_y4jh7")
 
-[node name="result2" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="result2" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 visible = false
 layout_mode = 0
 offset_left = -217.0
@@ -2020,7 +1726,7 @@ selecting_enabled = false
 drag_and_drop_selection_enabled = false
 script = ExtResource("4_y4jh7")
 
-[node name="name" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="name" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 visible = false
 layout_mode = 0
 offset_left = -479.0
@@ -2031,7 +1737,7 @@ theme_override_font_sizes/font_size = 50
 alignment = 1
 script = ExtResource("4_y4jh7")
 
-[node name="phone" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="phone" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 visible = false
 layout_mode = 0
 offset_left = -479.0
@@ -2042,7 +1748,7 @@ theme_override_font_sizes/font_size = 50
 alignment = 1
 script = ExtResource("4_y4jh7")
 
-[node name="email" type="LineEdit" parent="Camera2D/BankAccountScreen2"]
+[node name="email" type="LineEdit" parent="Camera2D/OLD BankAccountScreen"]
 visible = false
 layout_mode = 0
 offset_left = -479.0
@@ -2053,7 +1759,7 @@ theme_override_font_sizes/font_size = 50
 alignment = 1
 script = ExtResource("4_y4jh7")
 
-[node name="OptionButton" type="OptionButton" parent="Camera2D/BankAccountScreen2"]
+[node name="OptionButton" type="OptionButton" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 0
 offset_left = 336.0
 offset_top = 180.0
@@ -2062,7 +1768,7 @@ offset_bottom = 281.0
 theme_override_font_sizes/font_size = 50
 script = ExtResource("8_f140w")
 
-[node name="IsBankStaffLabel2" type="RichTextLabel" parent="Camera2D/BankAccountScreen2"]
+[node name="IsBankStaffLabel2" type="RichTextLabel" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2083,7 +1789,7 @@ autowrap_mode = 0
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="deposit" type="Button" parent="Camera2D/BankAccountScreen2"]
+[node name="deposit" type="Button" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -2097,7 +1803,7 @@ text = "Deposit"
 icon_alignment = 1
 script = ExtResource("1_hpc76")
 
-[node name="withdraw" type="Button" parent="Camera2D/BankAccountScreen2"]
+[node name="withdraw" type="Button" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -2111,7 +1817,7 @@ text = "Withdraw"
 icon_alignment = 1
 script = ExtResource("1_hpc76")
 
-[node name="addInterest" type="Button" parent="Camera2D/BankAccountScreen2"]
+[node name="addInterest" type="Button" parent="Camera2D/OLD BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0

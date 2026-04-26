@@ -16,7 +16,7 @@ using Server.Database.Exceptions;
 
 namespace Server.Database
 {
-    internal class EverydayAccount
+    internal class EverydayBalance
     {
         internal static long idCounter = 0;
         internal static readonly object _idGenLock = new();
@@ -54,7 +54,7 @@ namespace Server.Database
 
         // Constructors ----------------------------------------
 
-        public EverydayAccount(bool valueIsBankStaff, decimal valueBalance, string valueAccountName, short valuePin)
+        public EverydayBalance(bool valueIsBankStaff, decimal valueBalance, string valueAccountName, short valuePin)
         {
             lock (_idGenLock)
             {
@@ -68,7 +68,7 @@ namespace Server.Database
             pin = valuePin;
         }
 
-        public EverydayAccount(bool valueIsBankStaff, long valueBankID, decimal valueBalance, string valueAccountName, short valuePin)
+        public EverydayBalance(bool valueIsBankStaff, long valueBankID, decimal valueBalance, string valueAccountName, short valuePin)
         {
             isBankStaff = valueIsBankStaff;
             bankID = valueBankID;

@@ -16,16 +16,16 @@ using Server.Database.Exceptions;
 
 namespace Server.Database
 {
-    internal class OmniAccount : InvestmentAccount
+    internal class OmniBalance : InvestmentBalance
     {
         internal override string AccountType { get { return "Omni"; } }
         internal readonly decimal OverdraftLimit;
 
-        public OmniAccount(bool valueIsBankStaff, decimal valueBalance, string valueAccountName, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee, decimal newOverdraftLimit) : base(valueIsBankStaff, valueBalance, valueAccountName, valuePin, newInvestmentRate, newFailedTransactionFee)
+        public OmniBalance(bool valueIsBankStaff, decimal valueBalance, string valueAccountName, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee, decimal newOverdraftLimit) : base(valueIsBankStaff, valueBalance, valueAccountName, valuePin, newInvestmentRate, newFailedTransactionFee)
         {            
             OverdraftLimit = newOverdraftLimit;
         }
-        public OmniAccount(bool valueIsBankStaff, long valueBankID, decimal valueBalance, string valueAccountName, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee, decimal newOverdraftLimit) : base(valueIsBankStaff, valueBankID, valueBalance, valueAccountName, valuePin, newInvestmentRate, newFailedTransactionFee)
+        public OmniBalance(bool valueIsBankStaff, long valueBankID, decimal valueBalance, string valueAccountName, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee, decimal newOverdraftLimit) : base(valueIsBankStaff, valueBankID, valueBalance, valueAccountName, valuePin, newInvestmentRate, newFailedTransactionFee)
         {             
             OverdraftLimit = newOverdraftLimit;
         }

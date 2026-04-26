@@ -23,11 +23,11 @@ namespace Server.Database
         private readonly Lock _passwordRWLock = new();
 
         // Session data ----------------------------------------
-        
-        internal string SessionID 
-        { 
-            private set { lock(_sessionRWLock) { _sessionID = value; } } 
-            get { lock(_sessionRWLock) { return _sessionID; } }
+
+        internal string SessionID
+        {
+            private set { lock (_sessionRWLock) { _sessionID = value; } }
+            get { lock (_sessionRWLock) { return _sessionID; } }
         }
         private string _sessionID = string.Empty;
         private DateTime sessionCreationTime = DateTime.MinValue;
@@ -35,47 +35,47 @@ namespace Server.Database
         private readonly Lock _sessionEditRWLock = new();
 
         // Name ----------------------------------------
-        internal string Name 
-        { 
-            private set { lock(_nameRWLock) { name = value; } } 
-            get { lock(_nameRWLock) { return name; } }
+        internal string Name
+        {
+            private set { lock (_nameRWLock) { name = value; } }
+            get { lock (_nameRWLock) { return name; } }
         }
-        private string  name;
+        private string name;
         private readonly Lock _nameRWLock = new();
 
         // PhoneNumber ----------------------------------------
         internal string PhoneNumber
         {
-            private set { lock(_phoneNumberRWLock) { phoneNumber = value; } } 
-            get { lock(_phoneNumberRWLock) { return phoneNumber; } }
+            private set { lock (_phoneNumberRWLock) { phoneNumber = value; } }
+            get { lock (_phoneNumberRWLock) { return phoneNumber; } }
         }
         private string phoneNumber;
         private readonly Lock _phoneNumberRWLock = new();
 
         // Email ----------------------------------------
-        internal string Email 
-        { 
-            private set { lock(_emailRWLock) { email = value; } } 
-            get { lock(_emailRWLock) { return email; } }
+        internal string Email
+        {
+            private set { lock (_emailRWLock) { email = value; } }
+            get { lock (_emailRWLock) { return email; } }
         }
-        private string  email;
+        private string email;
         private readonly Lock _emailRWLock = new();
 
         // Other locks ----------------------------------------
         private readonly Lock _contactInfoRWLock = new();
         private readonly Lock _transactionRWLock = new();
 
-        private readonly List<EverydayAccount> accounts;
+        private readonly EverydayBalance account;
 
         // Constructors ----------------------------------------
-        public Customer(string newCustomerID, string newPassword, string newName, string newPhone, string newEmail, List<EverydayAccount> newAccounts)
+        public Customer(string newCustomerID, string newPassword, string newName, string newPhone, string newEmail, EverydayBalance newAccount)
         {
             customerID = newCustomerID;
             password = newPassword;
             name = newName;
             phoneNumber = newPhone;
             email = newEmail;
-            accounts = newAccounts;
+            account = newAccount;
         }
 
         // Authorisation ----------------------------------------
@@ -97,7 +97,7 @@ namespace Server.Database
                 return true;
             }
         }
-        internal bool Login (string newSessionID, string userpassword)
+        internal bool Login(string newSessionID, string userpassword)
         {
             lock (_passwordRWLock)
             {
@@ -127,10 +127,13 @@ namespace Server.Database
         {
             lock (_passwordRWLock)
             {
-                if(ValidateSession(cookie)) 
-                { 
-                    password = newPassword; 
-                    return true; 
+                if (ValidateSession(cookie))
+                {
+                    lock (password)
+                    {
+                        password = newPassword;
+                    }
+                    return true;
                 }
             }
             return false;
@@ -158,23 +161,20 @@ namespace Server.Database
             {
                 lock (_transactionRWLock)
                 {
-                    foreach (var account in accounts)
+                    try
                     {
-                        try
+                        if (account.bankID == bankAccountID && account.ValidatePin(pin))
                         {
-                            if (account.bankID == bankAccountID && account.ValidatePin(pin))
+                            if (transactionType == "deposit") { return account.Deposit(sum); }
+                            else if (transactionType == "withdraw") { return account.Withdraw(sum); }
+                            else if (transactionType == "addInterest")
                             {
-                                if (transactionType == "deposit") { return account.Deposit(sum); }
-                                else if (transactionType == "withdraw") { return account.Withdraw(sum); }
-                                else if (transactionType == "addInterest")
-                                {
-                                    if (account.AccountType == "Investment") { return ((InvestmentAccount)account).AddInterest(); }
-                                    else if (account.AccountType == "Omni") { return ((OmniAccount)account).AddInterest(); }
-                                }
-                                break;
+                                if (account.AccountType == "Investment") { return ((InvestmentBalance)account).AddInterest(); }
+                                else if (account.AccountType == "Omni") { return ((OmniBalance)account).AddInterest(); }
                             }
-                        } catch (Exception e) { Terminal.PrintException(e); }
+                        }
                     }
+                    catch (Exception e) { Terminal.PrintException(e); }
                 }
             }
             return false;
@@ -186,19 +186,19 @@ namespace Server.Database
             {
                 lock (_transactionRWLock)
                 {
-                    if(accountType == "Everyday")
+                    if (accountType == "Everyday")
                     {
-                        accounts.Add(new EverydayAccount(valueIsBankStaff, valueBalance, valueAccountName, valuePin));
+                        // account = new EverydayAccount(valueIsBankStaff, valueBalance, valueAccountName, valuePin);
                         return true;
                     }
                     else if (accountType == "Investment")
                     {
-                        accounts.Add(new InvestmentAccount(valueIsBankStaff, valueBalance, valueAccountName, valuePin, newInvestmentRate, newFailedTransactionFee));
+                        // account = new InvestmentAccount(valueIsBankStaff, valueBalance, valueAccountName, valuePin, newInvestmentRate, newFailedTransactionFee);
                         return true;
                     }
                     else if (accountType == "Omni")
                     {
-                        accounts.Add(new OmniAccount(valueIsBankStaff, valueBalance, valueAccountName, valuePin, newInvestmentRate, newFailedTransactionFee, newOverdraftLimit));
+                        // account = new OmniAccount(valueIsBankStaff, valueBalance, valueAccountName, valuePin, newInvestmentRate, newFailedTransactionFee, newOverdraftLimit);
                         return true;
                     }
                 }
@@ -212,14 +212,8 @@ namespace Server.Database
             {
                 lock (_contactInfoRWLock)
                 {
-                    foreach (var account in accounts)
-                    {
-                        if (account.bankID == bankAccountID)
-                        {
-                            account.AccountName = newBankAccountName;
-                            return true;
-                        }
-                    }
+                    account.AccountName = newBankAccountName;
+                    return true;
                 }
             }
             return false;
@@ -231,12 +225,9 @@ namespace Server.Database
             {
                 lock (_transactionRWLock)
                 {
-                    foreach (var account in accounts)
+                    if (account.bankID == bankAccountID)
                     {
-                        if (account.bankID == bankAccountID)
-                        {
-                            return account.ChangePin(currentPin, newPin);
-                        }
+                        return account.ChangePin(currentPin, newPin);
                     }
                 }
             }
@@ -249,22 +240,18 @@ namespace Server.Database
             {
                 lock (_transactionRWLock)
                 {
-                    foreach (var account in accounts)
+                    try
                     {
-                        try
+                        if (account.bankID == bankAccountID && account.Balance == 0 && account.ValidatePin(pin))
                         {
-                            if (account.bankID == bankAccountID && account.Balance == 0 && account.ValidatePin(pin))
-                            {
-                                Console.WriteLine();
-                                Console.WriteLine(bankAccountID);
-                                accounts.Remove(account);
-                                return true;
-                            }
-                            Console.WriteLine(account.bankID);
-                            Console.WriteLine(pin + " " + account.ValidatePin(pin));
+                            Console.WriteLine();
+                            Console.WriteLine(bankAccountID);
+                            return true;
                         }
-                        catch (Exception e) { Terminal.PrintException(e); }
+                        Console.WriteLine(account.bankID);
+                        Console.WriteLine(pin + " " + account.ValidatePin(pin));
                     }
+                    catch (Exception e) { Terminal.PrintException(e); }
                 }
             }
             return false;
@@ -275,22 +262,11 @@ namespace Server.Database
         public override string ToString()
         {
             string accountInfo = SVTerminal.JsonString(
-                [ ("login", customerID.ToString()), 
-                ("name", Name.ToString()), 
-                ("phone", PhoneNumber.ToString()), 
+                [ ("login", customerID.ToString()),
+                ("name", Name.ToString()),
+                ("phone", PhoneNumber.ToString()),
                 ("email", email.ToString())]);
-            
-            Dictionary<string, string> accountsDict = [];
-
-            foreach (var account in accounts)
-            {
-                try
-                {
-                    accountsDict.Add(account.bankID.ToString(), account.ToString());
-                }
-                catch (Exception e) { Terminal.PrintException(e); }
-            }
-            return SVTerminal.JsonString([("accountInfo", accountInfo), ("bankAccounts", SVTerminal.JsonString(accountsDict))]);
+            return SVTerminal.JsonString([("accountInfo", accountInfo), ("bankAccount", account.ToString())]);
         }
     }
 }

@@ -13,10 +13,6 @@ namespace BankAppClient.UI.LaunchScreen
             response.TryGetValue("result", out string result);
             GD.Print(result);
             UpdateFields(response);            
-            if (result == "success" && requestType == "logout")
-            {
-                SwitchScreens("LaunchScreen");
-            }
             if(fields.TryGetValue("result", out LineEdit lineEdit))
             {
                 if (result == "failure") { lineEdit.Text = "Error"; }
