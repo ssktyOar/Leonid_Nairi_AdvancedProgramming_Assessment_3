@@ -843,6 +843,54 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("7_q68mp")
 
+[node name="Sprite2D2" type="Sprite2D" parent="Camera2D/BankAccountScreen"]
+position = Vector2(-935, -350)
+scale = Vector2(0.7, 0.3)
+texture = ExtResource("1_4b75m")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Camera2D/BankAccountScreen"]
+position = Vector2(-935, -240)
+scale = Vector2(0.7, 0.3)
+texture = ExtResource("1_4b75m")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="Camera2D/BankAccountScreen"]
+position = Vector2(-935, -130)
+scale = Vector2(0.7, 0.3)
+texture = ExtResource("1_4b75m")
+centered = false
+
+[node name="Sprite2D5" type="Sprite2D" parent="Camera2D/BankAccountScreen"]
+position = Vector2(-935, -20)
+scale = Vector2(0.7, 0.3)
+texture = ExtResource("1_4b75m")
+centered = false
+
+[node name="Sprite2D6" type="Sprite2D" parent="Camera2D/BankAccountScreen"]
+position = Vector2(-935, 90)
+scale = Vector2(0.7, 0.3)
+texture = ExtResource("1_4b75m")
+centered = false
+
+[node name="Sprite2D7" type="Sprite2D" parent="Camera2D/BankAccountScreen"]
+position = Vector2(-935, 200)
+scale = Vector2(0.7, 0.3)
+texture = ExtResource("1_4b75m")
+centered = false
+
+[node name="Sprite2D8" type="Sprite2D" parent="Camera2D/BankAccountScreen"]
+position = Vector2(-935, 310)
+scale = Vector2(0.7, 0.3)
+texture = ExtResource("1_4b75m")
+centered = false
+
+[node name="Sprite2D9" type="Sprite2D" parent="Camera2D/BankAccountScreen"]
+position = Vector2(240, -130)
+scale = Vector2(0.229437, 0.3)
+texture = ExtResource("1_4b75m")
+centered = false
+
 [node name="editBankAccount" type="Button" parent="Camera2D/BankAccountScreen"]
 visible = false
 layout_mode = 1
@@ -863,9 +911,9 @@ layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_left = 480.0
-offset_top = -67.0
+offset_top = -20.0
 offset_right = 924.0
-offset_bottom = 29.0
+offset_bottom = 80.0
 grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "Change pin"
@@ -907,9 +955,9 @@ script = ExtResource("4_y4jh7")
 [node name="newPin" type="LineEdit" parent="Camera2D/BankAccountScreen"]
 layout_mode = 0
 offset_left = 477.0
-offset_top = -179.0
+offset_top = -130.0
 offset_right = 924.0
-offset_bottom = -82.0
+offset_bottom = -30.0
 theme_override_font_sizes/font_size = 50
 placeholder_text = "Enter 4 digits"
 alignment = 1
@@ -1037,9 +1085,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 70.0
-offset_top = -190.0
+offset_top = -130.0
 offset_right = 562.0
-offset_bottom = -72.0
+offset_bottom = -30.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 50
