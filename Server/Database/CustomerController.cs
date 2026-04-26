@@ -195,11 +195,10 @@ namespace Server.Database
         private string ChangePassword(Dictionary<string, string> parsedData)
         {
             if (CookieTest(parsedData) && 
-            parsedData.TryGetValue("cookie", out string? cookie) && 
-            parsedData.TryGetValue("password", out string? password) &&
+            parsedData.TryGetValue("cookie", out string? cookie) &&
             parsedData.TryGetValue("newPassword", out string? newPassword))
             {
-                if (customers[cookies[cookie]].ChangePassword(cookie, password, newPassword))
+                if (customers[cookies[cookie]].ChangePassword(cookie, newPassword))
                 {
                     return jsonResponseSuccess;
                 }

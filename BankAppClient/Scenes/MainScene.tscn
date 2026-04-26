@@ -244,6 +244,7 @@ drag_and_drop_selection_enabled = false
 script = ExtResource("4_y4jh7")
 
 [node name="MainPage" type="Control" parent="Camera2D"]
+visible = false
 layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -588,6 +589,232 @@ text = "Email"
 scroll_active = false
 autowrap_mode = 0
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AccountScreen" type="Control" parent="Camera2D"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5_qxria")
+
+[node name="editContactData" type="Button" parent="Camera2D/AccountScreen"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = -507.0
+offset_top = 364.0
+offset_right = -63.0
+offset_bottom = 460.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Save changes"
+icon_alignment = 1
+script = ExtResource("1_hpc76")
+
+[node name="MainPage" type="Button" parent="Camera2D/AccountScreen"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 420.0
+offset_top = 381.0
+offset_right = 864.0
+offset_bottom = 477.0
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "BACK"
+icon_alignment = 1
+script = ExtResource("10_xb4mg")
+
+[node name="login" type="LineEdit" parent="Camera2D/AccountScreen"]
+layout_mode = 0
+offset_top = -410.0
+offset_right = 700.0
+offset_bottom = -270.0
+theme_override_font_sizes/font_size = 50
+alignment = 1
+script = ExtResource("4_y4jh7")
+
+[node name="result" type="LineEdit" parent="Camera2D/AccountScreen"]
+visible = false
+layout_mode = 0
+offset_left = 484.0
+offset_top = -514.0
+offset_right = 931.0
+offset_bottom = -417.0
+theme_override_colors/clear_button_color_pressed = Color(0, 0, 0, 0)
+theme_override_colors/clear_button_color = Color(0, 0, 0, 0)
+theme_override_colors/selection_color = Color(0, 0, 0, 0)
+theme_override_colors/caret_color = Color(0, 0, 0, 0)
+theme_override_font_sizes/font_size = 50
+alignment = 1
+editable = false
+context_menu_enabled = false
+emoji_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+drag_and_drop_selection_enabled = false
+script = ExtResource("4_y4jh7")
+
+[node name="name" type="LineEdit" parent="Camera2D/AccountScreen"]
+layout_mode = 0
+offset_top = -260.0
+offset_right = 700.0
+offset_bottom = -120.0
+theme_override_font_sizes/font_size = 50
+alignment = 1
+script = ExtResource("4_y4jh7")
+
+[node name="phone" type="LineEdit" parent="Camera2D/AccountScreen"]
+layout_mode = 0
+offset_top = -110.0
+offset_right = 700.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 50
+alignment = 1
+script = ExtResource("4_y4jh7")
+
+[node name="email" type="LineEdit" parent="Camera2D/AccountScreen"]
+layout_mode = 0
+offset_top = 40.0
+offset_right = 700.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 50
+alignment = 1
+script = ExtResource("4_y4jh7")
+
+[node name="newPassword" type="LineEdit" parent="Camera2D/AccountScreen"]
+layout_mode = 0
+offset_top = 190.0
+offset_right = 700.0
+offset_bottom = 330.0
+theme_override_font_sizes/font_size = 50
+alignment = 1
+script = ExtResource("4_y4jh7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Camera2D/AccountScreen"]
+position = Vector2(-510, -410)
+scale = Vector2(0.7, 0.4)
+texture = ExtResource("1_4b75m")
+centered = false
+
+[node name="Sprite2D3" type="Sprite2D" parent="Camera2D/AccountScreen"]
+position = Vector2(-510, -260)
+scale = Vector2(0.7, 0.4)
+texture = ExtResource("1_4b75m")
+centered = false
+
+[node name="Sprite2D4" type="Sprite2D" parent="Camera2D/AccountScreen"]
+position = Vector2(-510, -110)
+scale = Vector2(0.7, 0.4)
+texture = ExtResource("1_4b75m")
+centered = false
+
+[node name="Sprite2D5" type="Sprite2D" parent="Camera2D/AccountScreen"]
+position = Vector2(-510, 40)
+scale = Vector2(0.7, 0.4)
+texture = ExtResource("1_4b75m")
+centered = false
+
+[node name="Sprite2D6" type="Sprite2D" parent="Camera2D/AccountScreen"]
+position = Vector2(-510, 190)
+scale = Vector2(0.7, 0.4)
+texture = ExtResource("1_4b75m")
+centered = false
+
+[node name="LoginLabel" type="RichTextLabel" parent="Camera2D/AccountScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -400.0
+offset_bottom = -300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 80
+text = "Login"
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="NameLabel" type="RichTextLabel" parent="Camera2D/AccountScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -250.0
+offset_bottom = -150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 80
+text = "Name"
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="PhoneLabel" type="RichTextLabel" parent="Camera2D/AccountScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 80
+text = "Phone"
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="EmailLabel" type="RichTextLabel" parent="Camera2D/AccountScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = 50.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 80
+text = "Email"
+scroll_active = false
+autowrap_mode = 0
+vertical_alignment = 1
+
+[node name="EmailLabel2" type="RichTextLabel" parent="Camera2D/AccountScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = 200.0
+offset_bottom = 300.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 80
+text = "Password"
+scroll_active = false
+autowrap_mode = 0
 vertical_alignment = 1
 
 [node name="BankAccountScreen" type="Control" parent="Camera2D"]
@@ -1069,7 +1296,7 @@ autowrap_mode = 0
 horizontal_alignment = 2
 vertical_alignment = 1
 
-[node name="BACK" type="Button" parent="Camera2D/BankAccountScreen"]
+[node name="MainPage" type="Button" parent="Camera2D/BankAccountScreen"]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -1081,7 +1308,7 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 50
 text = "GO BACK"
 icon_alignment = 1
-script = ExtResource("1_hpc76")
+script = ExtResource("10_xb4mg")
 
 [node name="login" type="LineEdit" parent="Camera2D/BankAccountScreen"]
 visible = false

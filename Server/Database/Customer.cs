@@ -123,11 +123,11 @@ namespace Server.Database
             }
             return true;
         }
-        internal bool ChangePassword(string cookie, string currentPassword, string newPassword)
+        internal bool ChangePassword(string cookie, string newPassword)
         {
             lock (_passwordRWLock)
             {
-                if(ValidateSession(cookie) && password == currentPassword) 
+                if(ValidateSession(cookie)) 
                 { 
                     password = newPassword; 
                     return true; 
