@@ -20,11 +20,6 @@ namespace Server.Database
     {
         internal override string AccountType { get { return "Omni"; } }
         internal readonly decimal OverdraftLimit;
-
-        public OmniBalance(bool valueIsBankStaff, decimal valueBalance, string valueAccountName, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee, decimal newOverdraftLimit) : base(valueIsBankStaff, valueBalance, valueAccountName, valuePin, newInvestmentRate, newFailedTransactionFee)
-        {            
-            OverdraftLimit = newOverdraftLimit;
-        }
         public OmniBalance(bool valueIsBankStaff, long valueBankID, decimal valueBalance, string valueAccountName, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee, decimal newOverdraftLimit) : base(valueIsBankStaff, valueBankID, valueBalance, valueAccountName, valuePin, newInvestmentRate, newFailedTransactionFee)
         {             
             OverdraftLimit = newOverdraftLimit;
@@ -62,9 +57,9 @@ namespace Server.Database
             }
         }
 
-        public override string ToString()
+        public override List<(string, string)> ToList()
         {
-            return SVTerminal.JsonString(
+            return 
                 [ ("bankAccountID", bankID.ToString()), 
                 ("isBankStaff", isBankStaff.ToString()), 
                 ("accountType", AccountType), 
@@ -73,7 +68,7 @@ namespace Server.Database
                 ("investmentRate", InvestmentRate.ToString()),
                 ("interest", Interest().ToString()),
                 ("failedTransactionFee", FailedTransactionFee.ToString()),
-                ("overdraftLimit", OverdraftLimit.ToString())]);
+                ("overdraftLimit", OverdraftLimit.ToString())];
         }
     }
 }

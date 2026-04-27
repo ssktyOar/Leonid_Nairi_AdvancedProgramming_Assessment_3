@@ -155,7 +155,7 @@ namespace Server.Database
         }
 
         // Bank account instances ----------------------------------------
-        internal bool Transaction(string cookie, long bankAccountID, short pin, string transactionType, decimal sum)
+        internal bool Transaction(string cookie, short pin, string transactionType, decimal sum)
         {
             if (ValidateSession(cookie))
             {
@@ -163,7 +163,7 @@ namespace Server.Database
                 {
                     try
                     {
-                        if (account.bankID == bankAccountID && account.ValidatePin(pin))
+                        if (account.ValidatePin(pin))
                         {
                             if (transactionType == "deposit") { return account.Deposit(sum); }
                             else if (transactionType == "withdraw") { return account.Withdraw(sum); }
@@ -180,33 +180,20 @@ namespace Server.Database
             return false;
         }
 
-        internal bool CreateBankAccount(string cookie, string accountType, bool valueIsBankStaff, decimal valueBalance, string valueAccountName, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee, decimal newOverdraftLimit)
+        internal bool InnerTransaction(decimal sum)
         {
-            if (ValidateSession(cookie))
-            {
                 lock (_transactionRWLock)
                 {
-                    if (accountType == "Everyday")
+                    try
                     {
-                        // account = new EverydayAccount(valueIsBankStaff, valueBalance, valueAccountName, valuePin);
-                        return true;
+                        return account.Deposit(sum);
                     }
-                    else if (accountType == "Investment")
-                    {
-                        // account = new InvestmentAccount(valueIsBankStaff, valueBalance, valueAccountName, valuePin, newInvestmentRate, newFailedTransactionFee);
-                        return true;
-                    }
-                    else if (accountType == "Omni")
-                    {
-                        // account = new OmniAccount(valueIsBankStaff, valueBalance, valueAccountName, valuePin, newInvestmentRate, newFailedTransactionFee, newOverdraftLimit);
-                        return true;
-                    }
+                    catch (Exception e) { Terminal.PrintException(e); }
                 }
-            }
             return false;
         }
 
-        internal bool EditBankAccount(string cookie, long bankAccountID, string newBankAccountName)
+        internal bool EditBankAccount(string cookie, string newBankAccountName)
         {
             if (ValidateSession(cookie) && !string.IsNullOrEmpty(newBankAccountName))
             {
@@ -234,39 +221,19 @@ namespace Server.Database
             return false;
         }
 
-        internal bool DeleteBankAccount(string cookie, long bankAccountID, short pin)
-        {
-            if (ValidateSession(cookie))
-            {
-                lock (_transactionRWLock)
-                {
-                    try
-                    {
-                        if (account.bankID == bankAccountID && account.Balance == 0 && account.ValidatePin(pin))
-                        {
-                            Console.WriteLine();
-                            Console.WriteLine(bankAccountID);
-                            return true;
-                        }
-                        Console.WriteLine(account.bankID);
-                        Console.WriteLine(pin + " " + account.ValidatePin(pin));
-                    }
-                    catch (Exception e) { Terminal.PrintException(e); }
-                }
-            }
-            return false;
-        }
-
         // Other ----------------------------------------
+
+        internal long GetBankingID() { return account.bankID; }
 
         public override string ToString()
         {
-            string accountInfo = SVTerminal.JsonString(
+            List<(string, string)> accountInfo = 
                 [ ("login", customerID.ToString()),
                 ("name", Name.ToString()),
                 ("phone", PhoneNumber.ToString()),
-                ("email", email.ToString())]);
-            return SVTerminal.JsonString([("accountInfo", accountInfo), ("bankAccount", account.ToString())]);
+                ("email", email.ToString())];
+            accountInfo.AddRange(account.ToList());
+            return SVTerminal.JsonString(accountInfo.ToArray());
         }
     }
 }

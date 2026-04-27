@@ -18,7 +18,6 @@ namespace Server.Database
 {
     internal class EverydayBalance
     {
-        internal static long idCounter = 0;
         internal static readonly object _idGenLock = new();
         internal readonly long bankID;
         internal readonly bool isBankStaff;
@@ -53,20 +52,6 @@ namespace Server.Database
         private byte count = 0;
 
         // Constructors ----------------------------------------
-
-        public EverydayBalance(bool valueIsBankStaff, decimal valueBalance, string valueAccountName, short valuePin)
-        {
-            lock (_idGenLock)
-            {
-                bankID = idCounter;
-                idCounter++;
-            }
-            isBankStaff = valueIsBankStaff;
-            balance = valueBalance;
-            Balance = valueBalance;
-            AccountName = valueAccountName;
-            pin = valuePin;
-        }
 
         public EverydayBalance(bool valueIsBankStaff, long valueBankID, decimal valueBalance, string valueAccountName, short valuePin)
         {
@@ -144,14 +129,14 @@ namespace Server.Database
             }
         }
 
-        public override string ToString()
+        public virtual List<(string, string)> ToList()
         {
-            return SVTerminal.JsonString(
+            return 
                 [ ("bankAccountID", bankID.ToString()), 
                 ("isBankStaff", isBankStaff.ToString()), 
                 ("accountType", AccountType), 
                 ("balance", Balance.ToString()), 
-                ("accountName", AccountName.ToString())]);
+                ("accountName", AccountName.ToString())];
         }
     }
 }

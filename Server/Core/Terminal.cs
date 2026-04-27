@@ -18,9 +18,9 @@ namespace Server.Core
         // Config files
         private static readonly string configDirectoryPath = Directory.GetCurrentDirectory() + "\\Configs";
         private static readonly string webConfigPath = Directory.GetCurrentDirectory() + "\\Configs\\WebConfig.txt";
-        private static readonly string dbConfigPath = Directory.GetCurrentDirectory() + "\\Configs\\DBConfig.txt";
+        private static readonly string dbPath = Directory.GetCurrentDirectory() + Path.DirectorySeparatorChar + "Data";
         private static string[] webConfigFile = [];
-        private static string[] dbConfigFile = [];
+        // private static string[] dbConfigFile = [];
 
         // Main thread, can exist only one at a time
         [System.Runtime.CompilerServices.MethodImpl(System.Runtime.CompilerServices.MethodImplOptions.Synchronized)]
@@ -87,7 +87,7 @@ namespace Server.Core
 
         internal static string GetCurrentDirectory() { return currentDirectoryPath; }
 
-        internal static string GetConfigDirectoryPath() { return configDirectoryPath; }
+        internal static string GetDatabaseDirectoryPath() { return configDirectoryPath; }
 
         private static void ShutDown()
         {
@@ -133,7 +133,7 @@ namespace Server.Core
         {
             Console.WriteLine("Loading configs...");
             webConfigFile = LoadFile(webConfigPath);
-            dbConfigFile = LoadFile(dbConfigPath);
+            //dbConfigFile = LoadFile(dbPath);
             Console.WriteLine("Configs are loaded");
             SVTerminal.UpdateConfigs();
         }
@@ -159,7 +159,8 @@ namespace Server.Core
         }
 
         internal static string[] GetWebConfig() { return webConfigFile; }
-        internal static string[] GetDBConfig() { return dbConfigFile; }
+        // internal static string[] GetDBConfig() { return dbConfigFile; }
+        internal static string DBPath() { return dbPath; }
 
         internal static void PrintCurrentDirectory()
         {
