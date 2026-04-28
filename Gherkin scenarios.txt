@@ -1,0 +1,6 @@
+Scenario: customers can send money to other customers
+
+Given customer A uses an Everyday Account
+And has balance $2000
+And customer B uses Omni Account
+And has balance $3000

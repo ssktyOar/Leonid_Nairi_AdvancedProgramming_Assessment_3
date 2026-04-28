@@ -16,19 +16,13 @@ using Server.Database.Exceptions;
 
 namespace Server.Database
 {
-    internal class InvestmentAccount : EverydayAccount
+    internal class InvestmentBalance : EverydayBalance
     {
         internal override string AccountType { get { return "Investment"; } }
         internal readonly decimal InvestmentRate; // Value between 0-1 for calculating interest
 
         internal readonly decimal FailedTransactionFee; // A flat fee is applied if transaction failed
-        public InvestmentAccount(bool valueIsBankStaff, decimal valueBalance, string valueAccountName, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee) : base(valueIsBankStaff, valueBalance, valueAccountName, valuePin)
-        {
-            InvestmentRate = newInvestmentRate;
-            FailedTransactionFee = newFailedTransactionFee;
-            if (valueIsBankStaff){ FailedTransactionFee *= 0.5m; }               
-        }
-        public InvestmentAccount(bool valueIsBankStaff, long valueBankID, decimal valueBalance, string valueAccountName, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee) : base(valueIsBankStaff, valueBankID, valueBalance, valueAccountName, valuePin)
+        public InvestmentBalance(bool valueIsBankStaff, long valueBankID, decimal valueBalance, string valueAccountName, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee) : base(valueIsBankStaff, valueBankID, valueBalance, valueAccountName, valuePin)
         {
             InvestmentRate = newInvestmentRate;
             FailedTransactionFee = newFailedTransactionFee;
@@ -71,9 +65,9 @@ namespace Server.Database
             }
         }
 
-        public override string ToString()
+        public override List<(string, string)> ToList()
         {
-            return SVTerminal.JsonString(
+            return 
                 [ ("bankAccountID", bankID.ToString()), 
                 ("isBankStaff", isBankStaff.ToString()), 
                 ("accountType", AccountType), 
@@ -81,7 +75,7 @@ namespace Server.Database
                 ("accountName", AccountName.ToString()),
                 ("investmentRate", InvestmentRate.ToString()),
                 ("interest", Interest().ToString()),
-                ("failedTransactionFee", FailedTransactionFee.ToString())]);
+                ("failedTransactionFee", FailedTransactionFee.ToString())];
         }
     }
 }

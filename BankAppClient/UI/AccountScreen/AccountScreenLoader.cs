@@ -8,21 +8,11 @@ namespace BankAppClient.UI.LaunchScreen
 {
     internal partial class AccountScreenLoader : DefaultForm
     {
-        public override void _Ready()
-        {
-            UITerminal.SetScreen(this, ScreenType.EditUserAccount);
-            base._Ready();
-        }
-
         internal override void ActionOnResponse(string requestType)
         {
             response.TryGetValue("result", out string result);
             GD.Print(result);
             UpdateFields(response);            
-            if (result == "success" && requestType == "logout")
-            {
-                UITerminal.SwitchScreens(ScreenType.EnterUserAccount);
-            }
             if(fields.TryGetValue("result", out LineEdit lineEdit))
             {
                 if (result == "failure") { lineEdit.Text = "Error"; }

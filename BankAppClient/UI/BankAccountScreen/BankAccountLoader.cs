@@ -13,13 +13,6 @@ namespace BankAppClient.UI.BankAccountScreen
     {
         internal DefaultOptionButton optionButton;
         private long selectedOption = 0;
-        public override void _Ready()
-        {
-            UITerminal.SetScreen(this, ScreenType.EditBankAccount);
-            //optionButton = GetChild<DefaultOptionButton>(-1);
-            //GD.Print(optionButton.Name);
-            base._Ready();
-        }
 
         private readonly Dictionary<string, Dictionary<string, string>> creditCards = [];
 
