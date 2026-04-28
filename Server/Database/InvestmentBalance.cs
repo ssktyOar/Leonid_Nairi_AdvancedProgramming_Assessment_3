@@ -22,7 +22,7 @@ namespace Server.Database
         internal readonly decimal InvestmentRate; // Value between 0-1 for calculating interest
 
         internal readonly decimal FailedTransactionFee; // A flat fee is applied if transaction failed
-        public InvestmentBalance(bool valueIsBankStaff, long valueBankID, decimal valueBalance, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee) : base(valueIsBankStaff, valueBankID, valueBalance, valuePin)
+        public InvestmentBalance(bool valueIsBankStaff, ulong valueBankID, decimal valueBalance, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee) : base(valueIsBankStaff, valueBankID, valueBalance, valuePin)
         {
             InvestmentRate = newInvestmentRate;
             FailedTransactionFee = newFailedTransactionFee;

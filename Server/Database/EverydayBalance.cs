@@ -19,7 +19,7 @@ namespace Server.Database
     internal class EverydayBalance
     {
         internal static readonly object _idGenLock = new();
-        internal readonly long bankID;
+        internal readonly ulong bankID;
         internal readonly bool isBankStaff;
         internal virtual string AccountType { get { return "Everyday"; } }
 
@@ -46,7 +46,7 @@ namespace Server.Database
 
         // Constructors ----------------------------------------
 
-        public EverydayBalance(bool valueIsBankStaff, long valueBankID, decimal valueBalance, short valuePin)
+        public EverydayBalance(bool valueIsBankStaff, ulong valueBankID, decimal valueBalance, short valuePin)
         {
             isBankStaff = valueIsBankStaff;
             bankID = valueBankID;

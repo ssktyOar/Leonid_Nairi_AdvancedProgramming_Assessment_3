@@ -20,7 +20,7 @@ namespace Server.Database
     {
         internal override string AccountType { get { return "Omni"; } }
         internal readonly decimal OverdraftLimit;
-        public OmniBalance(bool valueIsBankStaff, long valueBankID, decimal valueBalance, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee, decimal newOverdraftLimit) : base(valueIsBankStaff, valueBankID, valueBalance, valuePin, newInvestmentRate, newFailedTransactionFee)
+        public OmniBalance(bool valueIsBankStaff, ulong valueBankID, decimal valueBalance, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee, decimal newOverdraftLimit) : base(valueIsBankStaff, valueBankID, valueBalance, valuePin, newInvestmentRate, newFailedTransactionFee)
         {             
             OverdraftLimit = newOverdraftLimit;
         }

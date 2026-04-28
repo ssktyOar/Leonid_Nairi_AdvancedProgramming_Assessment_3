@@ -11,15 +11,13 @@ namespace BankAppClient.UI.BankAccountScreen
 {
     internal partial class BankAccountLoader : DefaultForm
     {
-        internal DefaultOptionButton optionButton;
-        private long selectedOption = 0;
 
         private readonly Dictionary<string, Dictionary<string, string>> creditCards = [];
 
         internal override void Submit(string requestType)
         {
             base.Submit(requestType);
-            UpdateFields(response);
+            // UpdateFields(response);
             if(response != null && response.TryGetValue("result", out string result) && fields.TryGetValue("result", out LineEdit lineEdit))
             {
                 if (result == "failure") { lineEdit.Text = "Error"; }
@@ -59,11 +57,7 @@ namespace BankAppClient.UI.BankAccountScreen
             {
                 GD.Print("Data exists");
                 Dictionary<string, string> parsedData = JsonDocument.Parse(data).RootElement.Deserialize<Dictionary<string, string>>()!;
-                if (!parsedData.TryGetValue("accountInfo", out string accountInfo))
-                {
-                    return;
-                }
-                foreach(var s in JsonDocument.Parse(accountInfo).RootElement.Deserialize<Dictionary<string, string>>()!)
+                foreach(var s in parsedData)
                 {
                     if(!response.TryAdd(s.Key, s.Value))
                     {

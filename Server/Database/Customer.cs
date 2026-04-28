@@ -193,7 +193,7 @@ namespace Server.Database
             return false;
         }
 
-        internal bool ChangeAccountPin(string cookie, long bankAccountID, short currentPin, short newPin)
+        internal bool ChangeAccountPin(string cookie, ulong bankAccountID, short currentPin, short newPin)
         {
             if (ValidateSession(cookie) && newPin.ToString().Length == 4)
             {
@@ -210,7 +210,7 @@ namespace Server.Database
 
         // Other ----------------------------------------
 
-        internal long GetBankingID() { return account.bankID; }
+        internal ulong GetBankingID() { return account.bankID; }
 
         public override string ToString()
         {

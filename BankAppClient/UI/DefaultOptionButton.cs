@@ -1,5 +1,5 @@
 using System;
-using BankAppClient.UI.BankAccountScreen;
+using BankAppClient.UI.CreateBankAccountScreen;
 using Godot;
 
 namespace BankAppClient.UI

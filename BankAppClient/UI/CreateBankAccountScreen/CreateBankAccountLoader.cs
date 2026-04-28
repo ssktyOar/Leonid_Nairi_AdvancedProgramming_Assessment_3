@@ -7,12 +7,12 @@ using System.Threading;
 using BankAppClient.Core;
 using System.Linq;
 
-namespace BankAppClient.UI.BankAccountScreen
+namespace BankAppClient.UI.CreateBankAccountScreen
 {
     internal partial class CreateBankAccountLoader : DefaultForm
     {
         internal DefaultOptionButton optionButton;
-        internal DefaultOptionCheckBox checkBox;
+        internal DefaultCheckBox checkBox;
         private long selectedOption = 0;
 
         private readonly Dictionary<string, Dictionary<string, string>> creditCards = [];
@@ -34,7 +34,7 @@ namespace BankAppClient.UI.BankAccountScreen
             {
                 data.Add("accountType", optionButton.GetItemText(optionButton.Selected));
             }
-            data.Add("isBankStaff", optionButton.GetItemText(optionButton.Selected));
+            data.Add("isBankStaff", checkBox.ToggleMode.ToString());
             data.Add("cookie", cookie);
             response = SVTerminal.Request(data);
             if (response == null) { response = []; response.Add("result", "failure"); }
@@ -71,7 +71,7 @@ namespace BankAppClient.UI.BankAccountScreen
 
         internal override void Activated()
         {
-            Submit("getInfo");
+            // Submit("getInfo");
             GD.Print("Activated");
             response.TryGetValue("result", out string result);
             if (result == "success" && response.TryGetValue("data", out string data))

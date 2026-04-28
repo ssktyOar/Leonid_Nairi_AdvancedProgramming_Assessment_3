@@ -1,10 +1,10 @@
 using System;
-using BankAppClient.UI.BankAccountScreen;
+using BankAppClient.UI.CreateBankAccountScreen;
 using Godot;
 
 namespace BankAppClient.UI
 {
-    internal partial class DefaultOptionCheckBox : CheckBox
+    internal partial class DefaultCheckBox : CheckBox
     {
         private string nodePath;
         private CreateBankAccountLoader form;       
