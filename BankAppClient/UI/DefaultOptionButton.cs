@@ -7,13 +7,12 @@ namespace BankAppClient.UI
     internal partial class DefaultOptionButton : OptionButton
     {
         private string nodePath;
-        private BankAccountLoader form;       
+        private CreateBankAccountLoader form;       
         public override void _Ready()
         {
             nodePath = GetPath();
-            //testButton = GetNode<Button>("TestButton");
             ItemSelected += DisplayMessage;
-            form = GetParent<BankAccountLoader>();
+            form = GetParent<CreateBankAccountLoader>();
             form.optionButton = this;
         }
 
@@ -21,7 +20,7 @@ namespace BankAppClient.UI
         {
             GD.Print(nodePath);
             GD.Print(Name);
-            form.Select(index);
+            //form.Select(index);
         }
     }
 }

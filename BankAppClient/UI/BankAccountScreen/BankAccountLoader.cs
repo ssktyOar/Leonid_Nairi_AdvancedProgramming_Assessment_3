@@ -41,14 +41,6 @@ namespace BankAppClient.UI.BankAccountScreen
                     return;
                 }
                 UpdateFields(JsonDocument.Parse(accountInfo).RootElement.Deserialize<Dictionary<string, string>>()!); 
-                if(parsedData.TryGetValue("bankAccounts", out string a))
-                {
-                    try
-                    {
-                        BankAccounts(JsonDocument.Parse(a).RootElement.Deserialize<Dictionary<string, string>>());
-                    }
-                    catch (Exception e){ SVTerminal.PrintException(e); }
-                } 
             } 
       
             if(fields.TryGetValue("result", out LineEdit lineEdit))
@@ -79,44 +71,7 @@ namespace BankAppClient.UI.BankAccountScreen
                     }
                     GD.Print(s.Key + ": " + s.Value);
                 }
-                UpdateFields(response);
-                if(parsedData.TryGetValue("bankAccounts", out string a))
-                {
-                    BankAccounts(JsonDocument.Parse(a).RootElement.Deserialize<Dictionary<string, string>>());
-                }   
-            }
-        }
-
-        private void BankAccounts(Dictionary<string, string> bankAcc)
-        {
-            GD.Print("Credit cards");
-            creditCards.Clear();
-            optionButton.Clear();
-            int count = 0;
-            foreach (var s in bankAcc)
-            {
-                creditCards.Add(s.Key, JsonDocument.Parse(s.Value).RootElement.Deserialize<Dictionary<string, string>>());
-                optionButton.AddItem(s.Key, count);
-                GD.Print(s.Key + ": " + s.Value);
-                count++;
-            }
-            if (bankAcc.Count > selectedOption)
-            { optionButton.Selected = (int)selectedOption; }
-            else 
-            { 
-                selectedOption = creditCards.Keys.First().ToInt(); 
-                optionButton.Selected = (int)selectedOption;
-            }
-            Select(optionButton.Selected);
-        }
-
-        internal void Select(long id)
-        {
-            if(creditCards.TryGetValue(optionButton.GetItemText((int)id), out Dictionary<string,string> value))
-            {
-                selectedOption = id;
-                UpdateFields(value);
-                GD.Print("Item selected: " + id.ToString());
+                UpdateFields(response); 
             }
         }
     }

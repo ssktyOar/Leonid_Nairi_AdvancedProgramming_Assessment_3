@@ -163,10 +163,6 @@ namespace Server.Database
                     {
                         s = CreateBankAccount(parsedData);
                     }
-                    else if (requestType == "editBankAccount")
-                    {
-                        s = EditBankAccount(parsedData);
-                    }
                     else if (requestType == "changeAccountPin")
                     {
                         s = ChangeAccountPin(parsedData);
@@ -328,7 +324,6 @@ namespace Server.Database
             parsedData.TryGetValue("phone", out string phone) &&
             parsedData.TryGetValue("email", out string email) &&
             parsedData.TryGetValue("accountType", out string accountType) &&
-            parsedData.TryGetValue("accountName", out string accountName) &&
             parsedData.TryGetValue("pin", out string sPin) &&
             parsedData.TryGetValue("isBankStaff", out string sIsBankStaff))
             {
@@ -378,15 +373,15 @@ namespace Server.Database
 
                         if (accountType == "Everyday")
                         {
-                            everydayBalance = new EverydayBalance(isBankStaff, bankAccountID, balance, accountName, Convert.ToInt16(sPin));
+                            everydayBalance = new EverydayBalance(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin));
                         }
                         else if (accountType == "Investment")
                         {
-                            everydayBalance = new InvestmentBalance(isBankStaff, bankAccountID, balance, accountName, Convert.ToInt16(sPin), investmentRate, failedTransactionFee);
+                            everydayBalance = new InvestmentBalance(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin), investmentRate, failedTransactionFee);
                         }
                         else if (accountType == "Omni")
                         {
-                            everydayBalance = new OmniBalance(isBankStaff, bankAccountID, balance, accountName, Convert.ToInt16(sPin), investmentRate, failedTransactionFee, overdraftLimit);
+                            everydayBalance = new OmniBalance(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin), investmentRate, failedTransactionFee, overdraftLimit);
                         }
                         else
                         {
@@ -415,26 +410,6 @@ namespace Server.Database
             {
                 File.Delete(path);
             }
-        }
-
-        private string EditBankAccount(Dictionary<string, string> parsedData)
-        {
-            if (CookieTest(parsedData) &&
-            parsedData.TryGetValue("cookie", out string? cookie) &&
-            parsedData.TryGetValue("accountName", out string? accountName))
-            {
-                try
-                {
-                    if (customers[cookies[cookie]].EditBankAccount(cookie, accountName))
-                    {
-                        UpdateRecord(DBActionType.Update, customers[cookies[cookie]]);
-                        return jsonResponseSuccess;
-                    }
-                }
-                catch (Exception e) { Terminal.PrintException(e); }
-
-            }
-            return jsonResponseFailure;
         }
 
         private string ChangeAccountPin(Dictionary<string, string> parsedData)

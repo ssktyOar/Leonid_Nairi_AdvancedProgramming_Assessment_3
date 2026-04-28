@@ -36,13 +36,6 @@ namespace Server.Database
         // have to lock default object instances instead
         private protected readonly object _balanceRWLock = new();        
         private protected readonly object _balanceLock = new();
-
-        // AccountName ----------------------------------------
-        internal string AccountName // Refactored using new C# 14 feature - "field" keyword
-        {
-            set { lock(_accountNameRWLock) { field = value; } } 
-            get { lock(_accountNameRWLock) { return field; } }
-        }
         private protected readonly object _accountNameRWLock = new();
 
         // Pin ----------------------------------------
@@ -53,13 +46,12 @@ namespace Server.Database
 
         // Constructors ----------------------------------------
 
-        public EverydayBalance(bool valueIsBankStaff, long valueBankID, decimal valueBalance, string valueAccountName, short valuePin)
+        public EverydayBalance(bool valueIsBankStaff, long valueBankID, decimal valueBalance, short valuePin)
         {
             isBankStaff = valueIsBankStaff;
             bankID = valueBankID;
             balance = valueBalance;
             Balance = valueBalance;
-            AccountName = valueAccountName;
             pin = valuePin;
         }
 
@@ -135,8 +127,7 @@ namespace Server.Database
                 [ ("bankAccountID", bankID.ToString()), 
                 ("isBankStaff", isBankStaff.ToString()), 
                 ("accountType", AccountType), 
-                ("balance", Balance.ToString()), 
-                ("accountName", AccountName.ToString())];
+                ("balance", Balance.ToString())];
         }
     }
 }

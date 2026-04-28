@@ -19,7 +19,7 @@ namespace BankAppClient.UI
         private protected static string cookie = "c";
         // "Field": "data"
         private protected readonly Dictionary<string,LineEdit> fields = [];
-        private readonly Dictionary<string,string> data = [];
+        private protected readonly Dictionary<string,string> data = [];
         private protected static Dictionary<string,string> response = [];
         private protected string resultResponse = "";
 

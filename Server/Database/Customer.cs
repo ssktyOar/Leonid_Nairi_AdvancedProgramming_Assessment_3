@@ -193,19 +193,6 @@ namespace Server.Database
             return false;
         }
 
-        internal bool EditBankAccount(string cookie, string newBankAccountName)
-        {
-            if (ValidateSession(cookie) && !string.IsNullOrEmpty(newBankAccountName))
-            {
-                lock (_contactInfoRWLock)
-                {
-                    account.AccountName = newBankAccountName;
-                    return true;
-                }
-            }
-            return false;
-        }
-
         internal bool ChangeAccountPin(string cookie, long bankAccountID, short currentPin, short newPin)
         {
             if (ValidateSession(cookie) && newPin.ToString().Length == 4)
