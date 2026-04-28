@@ -11,15 +11,13 @@ namespace BankAppClient.UI.BankAccountScreen
 {
     internal partial class BankAccountLoader : DefaultForm
     {
-        internal DefaultOptionButton optionButton;
-        private long selectedOption = 0;
 
         private readonly Dictionary<string, Dictionary<string, string>> creditCards = [];
 
         internal override void Submit(string requestType)
         {
             base.Submit(requestType);
-            UpdateFields(response);
+            // UpdateFields(response);
             if(response != null && response.TryGetValue("result", out string result) && fields.TryGetValue("result", out LineEdit lineEdit))
             {
                 if (result == "failure") { lineEdit.Text = "Error"; }
@@ -41,14 +39,6 @@ namespace BankAppClient.UI.BankAccountScreen
                     return;
                 }
                 UpdateFields(JsonDocument.Parse(accountInfo).RootElement.Deserialize<Dictionary<string, string>>()!); 
-                if(parsedData.TryGetValue("bankAccounts", out string a))
-                {
-                    try
-                    {
-                        BankAccounts(JsonDocument.Parse(a).RootElement.Deserialize<Dictionary<string, string>>());
-                    }
-                    catch (Exception e){ SVTerminal.PrintException(e); }
-                } 
             } 
       
             if(fields.TryGetValue("result", out LineEdit lineEdit))
@@ -67,11 +57,7 @@ namespace BankAppClient.UI.BankAccountScreen
             {
                 GD.Print("Data exists");
                 Dictionary<string, string> parsedData = JsonDocument.Parse(data).RootElement.Deserialize<Dictionary<string, string>>()!;
-                if (!parsedData.TryGetValue("accountInfo", out string accountInfo))
-                {
-                    return;
-                }
-                foreach(var s in JsonDocument.Parse(accountInfo).RootElement.Deserialize<Dictionary<string, string>>()!)
+                foreach(var s in parsedData)
                 {
                     if(!response.TryAdd(s.Key, s.Value))
                     {
@@ -79,44 +65,7 @@ namespace BankAppClient.UI.BankAccountScreen
                     }
                     GD.Print(s.Key + ": " + s.Value);
                 }
-                UpdateFields(response);
-                if(parsedData.TryGetValue("bankAccounts", out string a))
-                {
-                    BankAccounts(JsonDocument.Parse(a).RootElement.Deserialize<Dictionary<string, string>>());
-                }   
-            }
-        }
-
-        private void BankAccounts(Dictionary<string, string> bankAcc)
-        {
-            GD.Print("Credit cards");
-            creditCards.Clear();
-            optionButton.Clear();
-            int count = 0;
-            foreach (var s in bankAcc)
-            {
-                creditCards.Add(s.Key, JsonDocument.Parse(s.Value).RootElement.Deserialize<Dictionary<string, string>>());
-                optionButton.AddItem(s.Key, count);
-                GD.Print(s.Key + ": " + s.Value);
-                count++;
-            }
-            if (bankAcc.Count > selectedOption)
-            { optionButton.Selected = (int)selectedOption; }
-            else 
-            { 
-                selectedOption = creditCards.Keys.First().ToInt(); 
-                optionButton.Selected = (int)selectedOption;
-            }
-            Select(optionButton.Selected);
-        }
-
-        internal void Select(long id)
-        {
-            if(creditCards.TryGetValue(optionButton.GetItemText((int)id), out Dictionary<string,string> value))
-            {
-                selectedOption = id;
-                UpdateFields(value);
-                GD.Print("Item selected: " + id.ToString());
+                UpdateFields(response); 
             }
         }
     }

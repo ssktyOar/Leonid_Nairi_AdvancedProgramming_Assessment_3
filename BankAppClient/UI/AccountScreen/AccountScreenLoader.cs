@@ -29,11 +29,7 @@ namespace BankAppClient.UI.LaunchScreen
             {
                 GD.Print("Data exists");
                 Dictionary<string, string> parsedData = JsonDocument.Parse(data).RootElement.Deserialize<Dictionary<string, string>>()!;
-                if (!parsedData.TryGetValue("accountInfo", out string accountInfo))
-                {
-                    return;
-                }
-                foreach(var s in JsonDocument.Parse(accountInfo).RootElement.Deserialize<Dictionary<string, string>>()!)
+                foreach(var s in parsedData)
                 {
                     if(!response.TryAdd(s.Key, s.Value))
                     {

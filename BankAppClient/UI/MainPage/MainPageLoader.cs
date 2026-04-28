@@ -7,7 +7,7 @@ using System.Threading;
 using BankAppClient.Core;
 using System.Linq;
 
-namespace BankAppClient.UI.BankAccountScreen
+namespace BankAppClient.UI.MainPageScreen
 {
     internal partial class MainPageLoader : DefaultForm
     {

@@ -22,7 +22,7 @@ namespace Server.Database
         private readonly Dictionary<string, Customer> cookiesByUsers = []; // key - login, data - cookie
         private readonly Dictionary<string, Customer> customers = []; // key - login, data - customer
 
-        private readonly Dictionary<long, Customer> bankAccounts = []; // key - bankID, data - bank balance
+        private readonly Dictionary<ulong, Customer> bankAccounts = []; // key - bankID, data - bank balance
         private readonly string jsonResponseSuccess;
         private readonly string jsonResponseFailure;
 
@@ -91,12 +91,12 @@ namespace Server.Database
             return s;
         }
 
-        private long GenerateBankAccountId()
+        private ulong GenerateBankAccountId()
         {
-            long bankID = Convert.ToInt64(RandomNumberGenerator.GetBytes(8));
+            ulong bankID = BitConverter.ToUInt64(RandomNumberGenerator.GetBytes(8));
             while (bankAccounts.ContainsKey(bankID))
             {
-                bankID = Convert.ToInt64(RandomNumberGenerator.GetBytes(8));
+                bankID = BitConverter.ToUInt64(RandomNumberGenerator.GetBytes(8));
             }
             return bankID;
         }
@@ -162,10 +162,6 @@ namespace Server.Database
                     else if (requestType == "createBankAccount")
                     {
                         s = CreateBankAccount(parsedData);
-                    }
-                    else if (requestType == "editBankAccount")
-                    {
-                        s = EditBankAccount(parsedData);
                     }
                     else if (requestType == "changeAccountPin")
                     {
@@ -272,7 +268,7 @@ namespace Server.Database
                 {
                     Customer sender = customers[cookies[cookie]];
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-                    if (bankAccounts.TryGetValue(short.Parse(recipientBankingID), out Customer recipient))
+                    if (bankAccounts.TryGetValue(ulong.Parse(recipientBankingID), out Customer recipient))
 #pragma warning restore CS8600
                     {
                         if (sender.Transaction(cookie, short.Parse(pinString), "withdraw", Math.Abs(decimal.Parse(sumString))) && 
@@ -320,19 +316,23 @@ namespace Server.Database
 
         private string LoadBankAccount(bool fromDatabase, Dictionary<string, string> parsedData)
         {
+            Console.WriteLine("Loading account");
+            foreach (var s in parsedData)
+            {
+                Console.WriteLine("Key: " + s.Key + "Value: " + s.Value);
+            }
 #pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-            if (CookieTest(parsedData) &&
-            parsedData.TryGetValue("login", out string login) &&
+            if (parsedData.TryGetValue("login", out string login) &&
             parsedData.TryGetValue("password", out string password) &&
             parsedData.TryGetValue("name", out string name) &&
             parsedData.TryGetValue("phone", out string phone) &&
             parsedData.TryGetValue("email", out string email) &&
             parsedData.TryGetValue("accountType", out string accountType) &&
-            parsedData.TryGetValue("accountName", out string accountName) &&
             parsedData.TryGetValue("pin", out string sPin) &&
             parsedData.TryGetValue("isBankStaff", out string sIsBankStaff))
             {
-                long bankAccountID;
+                Console.WriteLine("Creating bank account");
+                ulong bankAccountID;
                 bool isBankStaff = Convert.ToBoolean(sIsBankStaff);
                 decimal balance = 0m;
                 decimal investmentRate = newInvestmentRate;
@@ -346,7 +346,7 @@ namespace Server.Database
                     {
                         if (fromDatabase && parsedData.TryGetValue("balance", out string sBalance))
                         {
-                            bankAccountID = Convert.ToInt64(parsedData["bankAccountID"]);
+                            bankAccountID = Convert.ToUInt64(parsedData["bankAccountID"]);
                             isBankStaff = Convert.ToBoolean(parsedData["isBankStaff"]);
                             balance = Convert.ToDecimal(sBalance);
                             if (accountType == "Investment" || accountType == "Omni")
@@ -359,7 +359,7 @@ namespace Server.Database
                                     failedTransactionFee = Convert.ToDecimal(sFailedTransactionFee);
                                     if (parsedData.TryGetValue("overdraftLimit", out string sOverdraftLimit))
                                     {
-                                        overdraftLimit = Convert.ToInt64(sOverdraftLimit);
+                                        overdraftLimit = Convert.ToDecimal(sOverdraftLimit);
                                     }
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
                                     //
@@ -374,27 +374,30 @@ namespace Server.Database
                             {
                                 return jsonResponseFailure;
                             }
+                            Console.WriteLine("ID is generated");
                         }
 
                         if (accountType == "Everyday")
                         {
-                            everydayBalance = new EverydayBalance(isBankStaff, bankAccountID, balance, accountName, Convert.ToInt16(sPin));
+                            everydayBalance = new EverydayBalance(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin));
                         }
                         else if (accountType == "Investment")
                         {
-                            everydayBalance = new InvestmentBalance(isBankStaff, bankAccountID, balance, accountName, Convert.ToInt16(sPin), investmentRate, failedTransactionFee);
+                            everydayBalance = new InvestmentBalance(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin), investmentRate, failedTransactionFee);
                         }
                         else if (accountType == "Omni")
                         {
-                            everydayBalance = new OmniBalance(isBankStaff, bankAccountID, balance, accountName, Convert.ToInt16(sPin), investmentRate, failedTransactionFee, overdraftLimit);
+                            everydayBalance = new OmniBalance(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin), investmentRate, failedTransactionFee, overdraftLimit);
                         }
                         else
                         {
                             throw new UndefinedCustomerTypeException();
                         }
+                        Console.WriteLine("Bank account is created");
                         customer = new(login, password, name, phone, email, everydayBalance);
                         customers.Add(customer.customerID, customer);
                         bankAccounts.Add(bankAccountID, customer);
+                        Console.WriteLine("Customer is created");
                         UpdateRecord(DBActionType.Update, customer);
                         return jsonResponseSuccess;
                     }
@@ -415,26 +418,7 @@ namespace Server.Database
             {
                 File.Delete(path);
             }
-        }
-
-        private string EditBankAccount(Dictionary<string, string> parsedData)
-        {
-            if (CookieTest(parsedData) &&
-            parsedData.TryGetValue("cookie", out string? cookie) &&
-            parsedData.TryGetValue("accountName", out string? accountName))
-            {
-                try
-                {
-                    if (customers[cookies[cookie]].EditBankAccount(cookie, accountName))
-                    {
-                        UpdateRecord(DBActionType.Update, customers[cookies[cookie]]);
-                        return jsonResponseSuccess;
-                    }
-                }
-                catch (Exception e) { Terminal.PrintException(e); }
-
-            }
-            return jsonResponseFailure;
+            Console.WriteLine(path);
         }
 
         private string ChangeAccountPin(Dictionary<string, string> parsedData)
@@ -447,7 +431,7 @@ namespace Server.Database
                 try
                 {
                     if (customers[cookies[cookie]].ChangeAccountPin(cookie,
-                    long.Parse(bankAccountID), short.Parse(pinString), short.Parse(pinString)))
+                    ulong.Parse(bankAccountID), short.Parse(pinString), short.Parse(pinString)))
                     {
                         UpdateRecord(DBActionType.Update, customers[cookies[cookie]]);
                         return jsonResponseSuccess;
