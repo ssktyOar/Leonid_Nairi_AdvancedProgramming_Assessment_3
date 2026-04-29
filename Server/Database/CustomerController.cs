@@ -328,7 +328,7 @@ namespace Server.Database
                 decimal failedTransactionFee = newFailedTransactionFee;
                 decimal overdraftLimit = newOverdraftLimit;
                 Customer customer;
-                EverydayBalance everydayBalance;
+                EverydayAccount everydayBalance;
                 lock (customers)
                 {
                     try
@@ -368,15 +368,15 @@ namespace Server.Database
 
                         if (accountType == "Everyday")
                         {
-                            everydayBalance = new EverydayBalance(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin));
+                            everydayBalance = new EverydayAccount(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin));
                         }
                         else if (accountType == "Investment")
                         {
-                            everydayBalance = new InvestmentBalance(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin), investmentRate, failedTransactionFee);
+                            everydayBalance = new InvestmentAccount(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin), investmentRate, failedTransactionFee);
                         }
                         else if (accountType == "Omni")
                         {
-                            everydayBalance = new OmniBalance(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin), investmentRate, failedTransactionFee, overdraftLimit);
+                            everydayBalance = new OmniAccount(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin), investmentRate, failedTransactionFee, overdraftLimit);
                         }
                         else
                         {

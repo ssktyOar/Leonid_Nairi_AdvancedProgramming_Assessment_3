@@ -65,10 +65,10 @@ namespace Server.Database
         private readonly Lock _contactInfoRWLock = new();
         private readonly Lock _transactionRWLock = new();
 
-        private readonly EverydayBalance account;
+        private readonly EverydayAccount account;
 
         // Constructors ----------------------------------------
-        public Customer(string newCustomerID, string newPassword, string newName, string newPhone, string newEmail, EverydayBalance newAccount)
+        public Customer(string newCustomerID, string newPassword, string newName, string newPhone, string newEmail, EverydayAccount newAccount)
         {
             customerID = newCustomerID;
             password = newPassword;
@@ -169,8 +169,8 @@ namespace Server.Database
                             else if (transactionType == "withdraw") { return account.Withdraw(sum); }
                             else if (transactionType == "addInterest")
                             {
-                                if (account.AccountType == "Investment") { return ((InvestmentBalance)account).AddInterest(); }
-                                else if (account.AccountType == "Omni") { return ((OmniBalance)account).AddInterest(); }
+                                if (account.AccountType == "Investment") { return ((InvestmentAccount)account).AddInterest(); }
+                                else if (account.AccountType == "Omni") { return ((OmniAccount)account).AddInterest(); }
                             }
                         }
                     }
