@@ -453,11 +453,15 @@ namespace Server.Database
                     try
                     {
                         string login = cookies[cookie];
-                        cookies.Remove(cookie);
-                        bankAccounts.Remove(customers[login].GetBankingID());
-                        customers.Remove(cookie);
-                        cookiesByUsers.Remove(login);
-                        UpdateRecord(DBActionType.Delete, customers[login]);
+                        Customer customer = customers[login];
+                        
+                        if (customer.GetBalance() != 0) { return jsonResponseFailure; }
+
+                        lock (cookies) { cookies.Remove(cookie); }
+                        lock (bankAccounts) { bankAccounts.Remove(customer.GetBankingID()); }
+                        lock (cookiesByUsers) { cookiesByUsers.Remove(login); }
+                        customers.Remove(login);
+                        UpdateRecord(DBActionType.Delete, customer);
                         return jsonResponseSuccess;
                     }
                     catch (Exception e) { Terminal.PrintException(e); }

@@ -18,7 +18,9 @@ namespace BankAppClient.UI.BankAccountScreen
             // UpdateFields(response);
             if(response != null && response.TryGetValue("result", out string result) && fields.TryGetValue("result", out DefaultField lineEdit))
             {
-                if (requestType != "getInfo"){ Activated(); }
+                try { if (requestType != "getInfo"){ Activated(); } } 
+                catch (Exception e) { SVTerminal.PrintException(e); }
+
                 if (result == "failure") 
                 { 
                     lineEdit.Text = "Error"; 

@@ -1,1 +1,1 @@
-{"login":"2","name":"TestUser","phone":"2","email":"2@2","bankAccountID":"6054398111621326674","isBankStaff":"True","accountType":"Omni","balance":"50650","investmentRate":"0.05","interest":"2532.50","failedTransactionFee":"2.5","overdraftLimit":"1000","password":"2","pin":"1111"}
+{"login":"2","name":"TestUser","phone":"2","email":"2@2","bankAccountID":"11756184691489093314","isBankStaff":"True","accountType":"Omni","balance":"0","investmentRate":"0.05","interest":"0","failedTransactionFee":"2.5","overdraftLimit":"1000","password":"2","pin":"1111"}
