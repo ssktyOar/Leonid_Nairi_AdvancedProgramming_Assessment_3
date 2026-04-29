@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "PJui7621q74=",
+  "success": true,
+  "projectFilePath": "/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/BankAppClient.csproj",
+  "expectedPackageFiles": [
+    "/home/thedarkmoth/.nuget/packages/godot.sourcegenerators/4.4.1/godot.sourcegenerators.4.4.1.nupkg.sha512",
+    "/home/thedarkmoth/.nuget/packages/godotsharp/4.4.1/godotsharp.4.4.1.nupkg.sha512",
+    "/home/thedarkmoth/.nuget/packages/godotsharpeditor/4.4.1/godotsharpeditor.4.4.1.nupkg.sha512",
+    "/home/thedarkmoth/.nuget/packages/microsoft.netcore.app.ref/8.0.26/microsoft.netcore.app.ref.8.0.26.nupkg.sha512",
+    "/home/thedarkmoth/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.26/microsoft.aspnetcore.app.ref.8.0.26.nupkg.sha512"
+  ],
+  "logs": []
+}

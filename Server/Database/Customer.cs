@@ -212,6 +212,8 @@ namespace Server.Database
 
         internal ulong GetBankingID() { return account.bankID; }
 
+        internal decimal GetBalance() { return account.Balance; }
+
         public override string ToString()
         {
             lock (_sessionEditRWLock)

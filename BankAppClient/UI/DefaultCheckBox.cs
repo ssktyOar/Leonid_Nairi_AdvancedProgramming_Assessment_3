@@ -12,7 +12,13 @@ namespace BankAppClient.UI
         {
             nodePath = GetPath();
             form = GetParent<CreateBankAccountLoader>();
+            Toggled += Check;
             form.checkBox = this;
+        }
+
+        private void Check(bool b)
+        {
+            GD.Print(ButtonPressed.ToString());
         }
     }
 }

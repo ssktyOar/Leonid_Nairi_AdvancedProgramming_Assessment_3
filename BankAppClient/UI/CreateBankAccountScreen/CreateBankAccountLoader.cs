@@ -34,7 +34,7 @@ namespace BankAppClient.UI.CreateBankAccountScreen
             {
                 data.Add("accountType", optionButton.GetItemText(optionButton.Selected));
             }
-            data.Add("isBankStaff", checkBox.ToggleMode.ToString());
+            data.Add("isBankStaff", checkBox.ButtonPressed.ToString());
             data.Add("cookie", cookie);
             response = SVTerminal.Request(data);
             if (response == null) { response = []; response.Add("result", "failure"); }

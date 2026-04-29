@@ -36,17 +36,6 @@ namespace Server.Database
             jsonResponseSuccess = JsonString("result", "success");
             jsonResponseFailure = JsonString("result", "failure");
             LoadAll();
-            //List<EverydayBalance> l1 = [];
-            //l1.Add();
-            //l1.Add(new InvestmentBalance(true, 5631m, "TestBankAccount", 2222, newInvestmentRate, newFailedTransactionFee));
-            //l1.Add(new OmniBalance(true, 15631m, "TestBankAccount", 3333, newInvestmentRate, newFailedTransactionFee, newOverdraftLimit));
-            //Customer c1 = new("1", "1", "TestEmployee", "1", "1@1.com", new EverydayBalance(true, 5497631m, "TestBankAccount", 1111));
-            //customers.Add(c1.customerID, c1);
-            //List<EverydayBalance> l2 = [];
-            //l2.Add(new OmniBalance(false, 631m, "TestBankAccount", 4444, newInvestmentRate, newFailedTransactionFee, newOverdraftLimit));
-            //l2.Add(new InvestmentBalance(false, 0m, "TestBankAccount", 5555, newInvestmentRate, newFailedTransactionFee));
-            //Customer c2 = new("2", "1111", "Test", "2", "2@1.com", l2);
-            //customers.Add(c2.customerID, c2);
         }
 
         private void LoadAll()
@@ -453,11 +442,15 @@ namespace Server.Database
                     try
                     {
                         string login = cookies[cookie];
-                        cookies.Remove(cookie);
-                        bankAccounts.Remove(customers[login].GetBankingID());
-                        customers.Remove(cookie);
-                        cookiesByUsers.Remove(login);
-                        UpdateRecord(DBActionType.Delete, customers[login]);
+                        Customer customer = customers[login];
+                        
+                        if (customer.GetBalance() != 0) { return jsonResponseFailure; }
+
+                        lock (cookies) { cookies.Remove(cookie); }
+                        lock (bankAccounts) { bankAccounts.Remove(customer.GetBankingID()); }
+                        lock (cookiesByUsers) { cookiesByUsers.Remove(login); }
+                        customers.Remove(login);
+                        UpdateRecord(DBActionType.Delete, customer);
                         return jsonResponseSuccess;
                     }
                     catch (Exception e) { Terminal.PrintException(e); }
