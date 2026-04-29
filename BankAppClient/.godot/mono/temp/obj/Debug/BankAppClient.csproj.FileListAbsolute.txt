@@ -1,0 +1,54 @@
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/bin/Debug/BankAppClient.deps.json
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/bin/Debug/BankAppClient.runtimeconfig.json
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/bin/Debug/BankAppClient.dll
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/bin/Debug/BankAppClient.pdb
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/bin/Debug/GodotSharp.dll
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.csproj.AssemblyReference.cache
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.GeneratedMSBuildEditorConfig.editorconfig
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.AssemblyInfoInputs.cache
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.AssemblyInfo.cs
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.csproj.CoreCompileInputs.cache
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.sourcelink.json
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/obj/Debug/BankAppC.8C2D6225.Up2Date
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.dll
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/obj/Debug/refint/BankAppClient.dll
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.pdb
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.genruntimeconfig.cache
+/home/thedarkmoth/Study/Assessments/IT7744/Assessment 1/BankAppClient/.godot/mono/temp/obj/Debug/ref/BankAppClient.dll
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/bin/Debug/BankAppClient.deps.json
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/bin/Debug/BankAppClient.runtimeconfig.json
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/bin/Debug/BankAppClient.dll
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/bin/Debug/BankAppClient.pdb
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/bin/Debug/GodotSharp.dll
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.csproj.AssemblyReference.cache
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.GeneratedMSBuildEditorConfig.editorconfig
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.AssemblyInfoInputs.cache
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.AssemblyInfo.cs
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.csproj.CoreCompileInputs.cache
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.sourcelink.json
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/obj/Debug/BankAppC.8C2D6225.Up2Date
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.dll
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/obj/Debug/refint/BankAppClient.dll
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.pdb
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.genruntimeconfig.cache
+/home/thedarkmoth/Study/Assessments/IT7742/LeonidNairi_IT7742_Assessment-2_Advanced-Programming/BankAppClient/.godot/mono/temp/obj/Debug/ref/BankAppClient.dll
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/bin/Debug/BankAppClient.deps.json
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/bin/Debug/BankAppClient.runtimeconfig.json
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/bin/Debug/BankAppClient.dll
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/bin/Debug/BankAppClient.pdb
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/bin/Debug/GodotSharp.dll
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/bin/Debug/GodotSharpEditor.dll
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.csproj.AssemblyReference.cache
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.GeneratedMSBuildEditorConfig.editorconfig
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.AssemblyInfoInputs.cache
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.AssemblyInfo.cs
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.csproj.CoreCompileInputs.cache
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.sourcelink.json
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/obj/Debug/BankAppC.8C2D6225.Up2Date
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.dll
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/obj/Debug/refint/BankAppClient.dll
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.pdb
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/obj/Debug/BankAppClient.genruntimeconfig.cache
+/home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/.godot/mono/temp/obj/Debug/ref/BankAppClient.dll

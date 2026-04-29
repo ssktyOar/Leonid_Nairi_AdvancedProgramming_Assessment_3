@@ -1,0 +1,22 @@
+is_global = true
+build_property.GodotDisabledSourceGenerators = 
+build_property.GodotProjectDir = /home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/
+build_property.GodotProjectDirBase64 = L2hvbWUvdGhlZGFya21vdGgvU3R1ZHkvQXNzZXNzbWVudHMvSVQ3NzQyL0xlb25pZF9OYWlyaV9BZHZhbmNlZFByb2dyYW1taW5nX0Fzc2Vzc21lbnRfMy9CYW5rQXBwQ2xpZW50Lw==
+build_property.GodotSourceGenerators = 
+build_property.IsGodotToolsProject = 
+build_property.TargetFramework = net8.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = BankAppClient
+build_property.ProjectDir = /home/thedarkmoth/Study/Assessments/IT7742/Leonid_Nairi_AdvancedProgramming_Assessment_3/BankAppClient/
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 

@@ -1,0 +1,14 @@
+res://Scenes/MainScene.tscn
+res://UI/LaunchScreen/LaunchScreenLoader.cs
+res://UI/AccountScreen/AccountScreenLoader.cs
+res://UI/BankAccountScreen/BankAccountLoader.cs
+res://UI/DefaultForm.cs
+res://UI/CreateBankAccountScreen/CreateBankAccountLoader.cs
+res://UI/MainPage/MainPageLoader.cs
+res://UI/DefaultButtonScreenSwitch.cs
+res://UI/DefaultButton.cs
+res://UI/DefaultOptionButton.cs
+res://UI/LoadingScreen/LoadingText.cs
+res://UI/DefaultCheckBox.cs
+res://UI/DefaultField.cs
+res://UI/TransactionScreenLoader/TransactionScreen.cs
