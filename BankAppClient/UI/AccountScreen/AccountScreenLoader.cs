@@ -13,7 +13,7 @@ namespace BankAppClient.UI.LaunchScreen
             response.TryGetValue("result", out string result);
             GD.Print(result);
             UpdateFields(response);            
-            if(fields.TryGetValue("result", out LineEdit lineEdit))
+            if(fields.TryGetValue("result", out DefaultField lineEdit))
             {
                 if (result == "failure") { lineEdit.Text = "Error"; }
                 //lineEdit.Text = result;

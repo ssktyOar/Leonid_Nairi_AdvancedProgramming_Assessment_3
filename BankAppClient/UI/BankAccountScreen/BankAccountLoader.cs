@@ -12,40 +12,33 @@ namespace BankAppClient.UI.BankAccountScreen
     internal partial class BankAccountLoader : DefaultForm
     {
 
-        private readonly Dictionary<string, Dictionary<string, string>> creditCards = [];
-
         internal override void Submit(string requestType)
         {
             base.Submit(requestType);
             // UpdateFields(response);
-            if(response != null && response.TryGetValue("result", out string result) && fields.TryGetValue("result", out LineEdit lineEdit))
+            if(response != null && response.TryGetValue("result", out string result) && fields.TryGetValue("result", out DefaultField lineEdit))
             {
-                if (result == "failure") { lineEdit.Text = "Error"; }
-                else { lineEdit.Text = "Success"; GD.Print("Success"); }
-            } else if(fields.TryGetValue("result", out LineEdit _lineEdit)) { _lineEdit.Text = "Error"; GD.Print("Error"); }
-            if (requestType != "getInfo"){ base.Submit("getInfo"); }
-        }
-
-        internal override void ActionOnResponse(string requestType)
-        {
-            response.TryGetValue("result", out string result);
-            GD.Print(result);
-            UpdateFields(response); 
-            if(response.TryGetValue("data", out string data))
-            {
-                var parsedData = JsonDocument.Parse(data).RootElement.Deserialize<Dictionary<string, string>>();
-                if (!parsedData.TryGetValue("accountInfo", out string accountInfo))
-                {
-                    return;
+                if (requestType != "getInfo"){ Activated(); }
+                if (result == "failure") 
+                { 
+                    lineEdit.Text = "Error"; 
+                    lineEdit.SetColor(false);
+                    if (requestType == "deleteBankAccount")
+                    {
+                        lineEdit.Text = "Balance must be 0";
+                    }
                 }
-                UpdateFields(JsonDocument.Parse(accountInfo).RootElement.Deserialize<Dictionary<string, string>>()!); 
-            } 
-      
-            if(fields.TryGetValue("result", out LineEdit lineEdit))
-            {
-                if (result == "failure") { lineEdit.Text = "Error"; }
-                //lineEdit.Text = result;
-            } else { lineEdit.Text = "Success"; GD.Print("Success"); }
+                else if (requestType != "deleteBankAccount")
+                { 
+                    lineEdit.Text = "Success"; 
+                    lineEdit.SetColor(true);
+                    GD.Print("Success"); 
+                }
+                else
+                {
+                    SwitchScreens("LaunchScreen");
+                }
+            } else if(fields.TryGetValue("result", out DefaultField _lineEdit)) { _lineEdit.Text = "Error"; GD.Print("Error"); }
         }
 
         internal override void Activated()

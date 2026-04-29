@@ -96,6 +96,14 @@ namespace Server.Database
                 return false;                
             }
         }
+        
+        internal short GetPin()
+        {
+            lock (_pinRWLock)
+            {
+                return pin;
+            }
+        }
 
         internal virtual bool Deposit(decimal value)
         {

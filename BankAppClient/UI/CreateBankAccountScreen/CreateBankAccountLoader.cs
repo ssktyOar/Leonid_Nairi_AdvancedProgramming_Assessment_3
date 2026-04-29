@@ -38,12 +38,12 @@ namespace BankAppClient.UI.CreateBankAccountScreen
             data.Add("cookie", cookie);
             response = SVTerminal.Request(data);
             if (response == null) { response = []; response.Add("result", "failure"); }
-            if(response != null && fields.TryGetValue("result", out LineEdit lineEdit) && response.TryGetValue("result", out string result))
+            if(response != null && fields.TryGetValue("result", out DefaultField lineEdit) && response.TryGetValue("result", out string result))
             {
                 if (result == "failure" || string.IsNullOrEmpty(result)) { lineEdit.Text = "Error"; }
                 else { lineEdit.Text = "Success"; GD.Print("Success"); }
                 //lineEdit.Text = result;
-            } else if(fields.TryGetValue("result", out LineEdit _lineEdit)) { _lineEdit.Text = "Error"; GD.Print("Error"); }
+            } else if(fields.TryGetValue("result", out DefaultField _lineEdit)) { _lineEdit.Text = "Error"; GD.Print("Error"); }
             try { ActionOnResponse(requestType); } catch (Exception e) { SVTerminal.PrintException(e); }        
         }
 
@@ -62,7 +62,7 @@ namespace BankAppClient.UI.CreateBankAccountScreen
                 UpdateFields(JsonDocument.Parse(accountInfo).RootElement.Deserialize<Dictionary<string, string>>()!); 
             } 
       
-            if(fields.TryGetValue("result", out LineEdit lineEdit))
+            if(fields.TryGetValue("result", out DefaultField lineEdit))
             {
                 if (result == "failure") { lineEdit.Text = "Error"; }
                 //lineEdit.Text = result;
