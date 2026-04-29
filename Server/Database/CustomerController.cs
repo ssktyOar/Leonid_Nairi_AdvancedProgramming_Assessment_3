@@ -171,7 +171,7 @@ namespace Server.Database
                     {
                         s = DeleteBankAccount(parsedData);
                     }
-                    else if (requestType == "InnerTransaction")
+                    else if (requestType == "innerTransaction")
                     {
                         s = InnerTransaction(parsedData);
                     }
@@ -412,7 +412,7 @@ namespace Server.Database
             string path = Terminal.DBPath() + Path.DirectorySeparatorChar + customer.customerID + ".customer";
             if (actionType == DBActionType.Update)
             {
-                File.WriteAllText(path, customer.ToString());
+                File.WriteAllText(path, customer.Serialize());
             }
             else if (actionType == DBActionType.Delete)
             {
@@ -453,11 +453,11 @@ namespace Server.Database
                     try
                     {
                         string login = cookies[cookie];
-                        UpdateRecord(DBActionType.Delete, customers[login]);
                         cookies.Remove(cookie);
                         bankAccounts.Remove(customers[login].GetBankingID());
                         customers.Remove(cookie);
                         cookiesByUsers.Remove(login);
+                        UpdateRecord(DBActionType.Delete, customers[login]);
                         return jsonResponseSuccess;
                     }
                     catch (Exception e) { Terminal.PrintException(e); }

@@ -214,13 +214,34 @@ namespace Server.Database
 
         public override string ToString()
         {
-            List<(string, string)> accountInfo = 
-                [ ("login", customerID.ToString()),
+            lock (_sessionEditRWLock)
+            {
+                return SVTerminal.JsonString(GetSafeData().ToArray());
+            }
+            
+        }
+
+        internal string Serialize()
+        {
+            
+            lock (_sessionEditRWLock)
+            {
+                List<(string, string)> accountInfo = GetSafeData();
+                accountInfo.Add(("password", password));
+                accountInfo.Add(("pin", account.GetPin().ToString()));
+                return SVTerminal.JsonString(accountInfo.ToArray());
+            }
+        }
+
+        private List<(string, string)> GetSafeData()
+        {
+            List<(string, string)> accountInfo = [ 
+                ("login", customerID.ToString()),
                 ("name", Name.ToString()),
                 ("phone", PhoneNumber.ToString()),
                 ("email", email.ToString())];
             accountInfo.AddRange(account.ToList());
-            return SVTerminal.JsonString(accountInfo.ToArray());
+            return accountInfo;
         }
     }
 }

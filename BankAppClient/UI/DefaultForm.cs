@@ -18,12 +18,12 @@ namespace BankAppClient.UI
         }
         private protected static string cookie = "c";
         // "Field": "data"
-        private protected readonly Dictionary<string,LineEdit> fields = [];
+        private protected readonly Dictionary<string,DefaultField> fields = [];
         private protected readonly Dictionary<string,string> data = [];
         private protected static Dictionary<string,string> response = [];
         private protected string resultResponse = "";
 
-        internal bool TryAddField(string fieldName, LineEdit field)
+        internal bool TryAddField(string fieldName, DefaultField field)
         {
             return fields.TryAdd(fieldName, field);
         }
@@ -59,12 +59,12 @@ namespace BankAppClient.UI
             data.Add("cookie", cookie);
             response = SVTerminal.Request(data);
             if (response == null) { response = []; response.Add("result", "failure"); }
-            if(response != null && fields.TryGetValue("result", out LineEdit lineEdit) && response.TryGetValue("result", out string result))
+            if(response != null && fields.TryGetValue("result", out DefaultField lineEdit) && response.TryGetValue("result", out string result))
             {
                 if (result == "failure" || string.IsNullOrEmpty(result)) { lineEdit.Text = "Error"; }
                 else { lineEdit.Text = "Success"; GD.Print("Success"); }
                 //lineEdit.Text = result;
-            } else if(fields.TryGetValue("result", out LineEdit _lineEdit)) { _lineEdit.Text = "Error"; GD.Print("Error"); }
+            } else if(fields.TryGetValue("result", out DefaultField _lineEdit)) { _lineEdit.Text = "Error"; GD.Print("Error"); }
             try { ActionOnResponse(requestType); } catch (Exception e) { SVTerminal.PrintException(e); }            
         }
 
@@ -90,7 +90,7 @@ namespace BankAppClient.UI
             }
             foreach (var s in info)
             {
-                if(fields.TryGetValue(s.Key, out LineEdit inputField))
+                if(fields.TryGetValue(s.Key, out DefaultField inputField))
                 {
                     if(s.Key == "investmentRate") { inputField.Text = (decimal.Parse(s.Value) * 100).ToString().Split(".")[0] + "%"; count++; continue; }
                     if(s.Key == "balance") { inputField.Text = "$" + s.Value; count++; continue; }
