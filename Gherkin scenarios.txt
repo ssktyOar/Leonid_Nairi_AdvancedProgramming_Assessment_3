@@ -1,6 +1,34 @@
-Scenario: customers can send money to other customers
+Scenatio: if the recipient does not exists sender's balance will not change
 
-Given customer A uses an Everyday Account
-And has balance $2000
-And customer B uses Omni Account
+Given Customer has $500
+And Customer tried to send $10
+And Customer entered that recipient's bank ID is 76576354679
+Given Account with Bank ID 76576354679 does not exist
+Then transaction will not initiate
+And failed transaction fee will not be charged
+And Customer will have balance $500
+And interface will display an error
+And interface will clear recepient field
+
+
+Scenario: if the recipient exists but sender doesn't have enough money then transaction will fail
+
+Given Customer A uses an Omni Account
+And has balance $1000
+And Customer B uses Eveyday Account
 And has balance $3000
+And Customer A paid $3000 to Customer B
+Then transaction will fail
+Then Customer A will have balance $995
+And Cutsomer B will have balance $3000
+
+
+Scenario: transfering money between accounts incures the same rules as withdrawing and depositiong
+
+Given Customer A uses an Omni Account
+And has balance $0
+And Customer B uses Investment Account
+And has balance $15000
+And Customer A paid $500 to Customer B
+Then Customer A will have balance -$500
+And Customer B will have $15525
