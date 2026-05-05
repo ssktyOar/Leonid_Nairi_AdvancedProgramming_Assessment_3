@@ -214,6 +214,7 @@ namespace Server.Database
 
         internal decimal GetBalance() { return account.Balance; }
 
+        // Sending only contact data
         public override string ToString()
         {
             lock (_sessionEditRWLock)
@@ -223,6 +224,7 @@ namespace Server.Database
             
         }
 
+        // Sending all data, password and pin included
         internal string Serialize()
         {
             
