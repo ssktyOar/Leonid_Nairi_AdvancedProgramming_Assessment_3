@@ -50,7 +50,7 @@ namespace Server.Database
                 {
                     try
                     {
-                        if (LoadBankAccount(false, JsonDocument.Parse(File.ReadAllText(customer)).RootElement.Deserialize<Dictionary<string, string>>()!) == jsonResponseSuccess)
+                        if (LoadBankAccount(true, JsonDocument.Parse(File.ReadAllText(customer)).RootElement.Deserialize<Dictionary<string, string>>()!) == jsonResponseSuccess)
                         {
                             Console.WriteLine("Successfully loaded file: " + customer);
                         }
@@ -346,11 +346,13 @@ namespace Server.Database
 
                         // The separation is done to avoid data poisoning by the client,
                         // for example to prevent client from seting their own interest rates
-                        if (fromDatabase && parsedData.TryGetValue("balance", out string sBalance))
+                        Console.WriteLine(fromDatabase);
+                        if (fromDatabase)
                         {
                             bankAccountID = Convert.ToUInt64(parsedData["bankAccountID"]);
                             isBankStaff = Convert.ToBoolean(parsedData["isBankStaff"]);
-                            balance = Convert.ToDecimal(sBalance);
+                            balance = Convert.ToDecimal(parsedData["balance"]);
+                            Console.WriteLine(balance);
                             if (accountType == "Investment" || accountType == "Omni")
                             {
                                 if (parsedData.TryGetValue("investmentRate", out string sInvestmentRate) &&
