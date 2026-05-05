@@ -16,7 +16,7 @@ using Server.Database.Exceptions;
 
 namespace Server.Database
 {
-    internal class EverydayBalance
+    internal class EverydayAccount
     {
         internal static readonly object _idGenLock = new();
         internal readonly ulong bankID;
@@ -46,7 +46,7 @@ namespace Server.Database
 
         // Constructors ----------------------------------------
 
-        public EverydayBalance(bool valueIsBankStaff, ulong valueBankID, decimal valueBalance, short valuePin)
+        public EverydayAccount(bool valueIsBankStaff, ulong valueBankID, decimal valueBalance, short valuePin)
         {
             isBankStaff = valueIsBankStaff;
             bankID = valueBankID;

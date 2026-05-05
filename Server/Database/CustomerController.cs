@@ -22,6 +22,7 @@ namespace Server.Database
         private readonly Dictionary<string, Customer> cookiesByUsers = []; // key - login, data - cookie
         private readonly Dictionary<string, Customer> customers = []; // key - login, data - customer
 
+        // Is added with the purpose of conducting transactions between accounts
         private readonly Dictionary<ulong, Customer> bankAccounts = []; // key - bankID, data - bank balance
         private readonly string jsonResponseSuccess;
         private readonly string jsonResponseFailure;
@@ -49,7 +50,7 @@ namespace Server.Database
                 {
                     try
                     {
-                        if (LoadBankAccount(false, JsonDocument.Parse(File.ReadAllText(customer)).RootElement.Deserialize<Dictionary<string, string>>()!) == jsonResponseSuccess)
+                        if (LoadBankAccount(true, JsonDocument.Parse(File.ReadAllText(customer)).RootElement.Deserialize<Dictionary<string, string>>()!) == jsonResponseSuccess)
                         {
                             Console.WriteLine("Successfully loaded file: " + customer);
                         }
@@ -206,6 +207,8 @@ namespace Server.Database
             return jsonResponseFailure;
         }
 
+        // Requested data about Customer and Accpunt 
+        // but excluding crucial details such as pin and password
         private string GetInfo(Dictionary<string, string> parsedData)
         {
             if (CookieTest(parsedData) && parsedData.TryGetValue("cookie", out string? cookie))
@@ -245,6 +248,8 @@ namespace Server.Database
             return jsonResponseFailure;
         }
 
+        // Sending money from one account to another
+
         private string InnerTransaction(Dictionary<string, string> parsedData)
         {
             if (CookieTest(parsedData) &&
@@ -275,6 +280,7 @@ namespace Server.Database
             return jsonResponseFailure;
         }
 
+        // Withdrawal, deposit and interest
         private string Transaction(Dictionary<string, string> parsedData)
         {
             if (CookieTest(parsedData) &&
@@ -298,11 +304,13 @@ namespace Server.Database
             return jsonResponseFailure;
         }
 
+        // Creating bank account using data sent by a client
         private string CreateBankAccount(Dictionary<string, string> parsedData)
         {
             return LoadBankAccount(false, parsedData);
         }
 
+        // Either creating data from client request or loading it from the database
         private string LoadBankAccount(bool fromDatabase, Dictionary<string, string> parsedData)
         {
             Console.WriteLine("Loading account");
@@ -328,16 +336,23 @@ namespace Server.Database
                 decimal failedTransactionFee = newFailedTransactionFee;
                 decimal overdraftLimit = newOverdraftLimit;
                 Customer customer;
-                EverydayBalance everydayBalance;
+                EverydayAccount everydayBalance;
                 lock (customers)
                 {
                     try
                     {
-                        if (fromDatabase && parsedData.TryGetValue("balance", out string sBalance))
+                        // If it's loading account from the database, load every value
+                        // from the files instead of using defaults
+
+                        // The separation is done to avoid data poisoning by the client,
+                        // for example to prevent client from seting their own interest rates
+                        Console.WriteLine(fromDatabase);
+                        if (fromDatabase)
                         {
                             bankAccountID = Convert.ToUInt64(parsedData["bankAccountID"]);
                             isBankStaff = Convert.ToBoolean(parsedData["isBankStaff"]);
-                            balance = Convert.ToDecimal(sBalance);
+                            balance = Convert.ToDecimal(parsedData["balance"]);
+                            Console.WriteLine(balance);
                             if (accountType == "Investment" || accountType == "Omni")
                             {
                                 if (parsedData.TryGetValue("investmentRate", out string sInvestmentRate) &&
@@ -351,7 +366,6 @@ namespace Server.Database
                                         overdraftLimit = Convert.ToDecimal(sOverdraftLimit);
                                     }
 #pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
-                                    //
                                 }
 
                             }
@@ -368,15 +382,15 @@ namespace Server.Database
 
                         if (accountType == "Everyday")
                         {
-                            everydayBalance = new EverydayBalance(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin));
+                            everydayBalance = new EverydayAccount(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin));
                         }
                         else if (accountType == "Investment")
                         {
-                            everydayBalance = new InvestmentBalance(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin), investmentRate, failedTransactionFee);
+                            everydayBalance = new InvestmentAccount(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin), investmentRate, failedTransactionFee);
                         }
                         else if (accountType == "Omni")
                         {
-                            everydayBalance = new OmniBalance(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin), investmentRate, failedTransactionFee, overdraftLimit);
+                            everydayBalance = new OmniAccount(isBankStaff, bankAccountID, balance, Convert.ToInt16(sPin), investmentRate, failedTransactionFee, overdraftLimit);
                         }
                         else
                         {
@@ -459,7 +473,8 @@ namespace Server.Database
             return jsonResponseFailure;
         }
 
-        private bool CookieTest(Dictionary<string, string> parsedData) // Simple check if cookie is valid
+        // Simple check to see if the cookie is valid
+        private bool CookieTest(Dictionary<string, string> parsedData) 
         {
             if (parsedData.TryGetValue("cookie", out string? cookie)
                 && cookies.TryGetValue(parsedData.GetValueOrDefault("cookie")!, out string? login))

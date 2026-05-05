@@ -16,35 +16,26 @@ using Server.Database.Exceptions;
 
 namespace Server.Database
 {
-    internal class InvestmentBalance : EverydayBalance
+    internal class OmniAccount : InvestmentAccount
     {
-        internal override string AccountType { get { return "Investment"; } }
-        internal readonly decimal InvestmentRate; // Value between 0-1 for calculating interest
-
-        internal readonly decimal FailedTransactionFee; // A flat fee is applied if transaction failed
-        public InvestmentBalance(bool valueIsBankStaff, ulong valueBankID, decimal valueBalance, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee) : base(valueIsBankStaff, valueBankID, valueBalance, valuePin)
-        {
-            InvestmentRate = newInvestmentRate;
-            FailedTransactionFee = newFailedTransactionFee;
-            if (valueIsBankStaff){ FailedTransactionFee *= 0.5m; }               
+        internal override string AccountType { get { return "Omni"; } }
+        internal readonly decimal OverdraftLimit;
+        public OmniAccount(bool valueIsBankStaff, ulong valueBankID, decimal valueBalance, short valuePin, decimal newInvestmentRate, decimal newFailedTransactionFee, decimal newOverdraftLimit) : base(valueIsBankStaff, valueBankID, valueBalance, valuePin, newInvestmentRate, newFailedTransactionFee)
+        {             
+            OverdraftLimit = newOverdraftLimit;
         }
 
-        internal virtual decimal Interest()
+        internal override decimal Interest()
         {
+            if (Balance < 1000m){ return 0m; }
             return InvestmentRate * Balance;
-        }
-
-        internal bool AddInterest()
-        {
-            Deposit(Interest());
-            return true;
         }
 
         internal override bool Deposit(decimal value)
         {
             lock (_balanceLock)
             {
-                balance = balance + value + value * InvestmentRate;
+                balance += value;
                 Balance = balance;
             }
             return true;
@@ -53,9 +44,10 @@ namespace Server.Database
         {
             lock (_balanceLock)
             {
-                if (balance >= value)
+                Console.WriteLine("Results: " + (balance - value + OverdraftLimit).ToString());
+                if (balance - value + OverdraftLimit >= 0)
                 {
-                    balance -= value;
+                    balance -=value;
                     Balance = balance;
                     return true;
                 }
@@ -74,7 +66,8 @@ namespace Server.Database
                 ("balance", Balance.ToString()),
                 ("investmentRate", InvestmentRate.ToString()),
                 ("interest", Interest().ToString()),
-                ("failedTransactionFee", FailedTransactionFee.ToString())];
+                ("failedTransactionFee", FailedTransactionFee.ToString()),
+                ("overdraftLimit", OverdraftLimit.ToString())];
         }
     }
 }
